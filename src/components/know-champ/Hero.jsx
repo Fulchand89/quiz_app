@@ -1,0 +1,80 @@
+import React from 'react';
+import { Users, Trophy, Gift, Smile } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+const Hero = () => {
+  const stats = [
+    { icon: <Users className="w-5 h-5" />, count: '50K+', label: 'Active Users' },
+    { icon: <Trophy className="w-5 h-5" />, count: '1000+', label: 'Contests' },
+    { icon: <Gift className="w-5 h-5" />, count: '50L+', label: 'Rewards Won' },
+    { icon: <Smile className="w-5 h-5" />, count: '98%', label: 'Happy Users' },
+  ];
+
+  return (
+    <div className="relative overflow-hidden bg-[#010914] pt-[98px] pb-[42px]">
+      <div className="w-[calc(100%-32px)] max-w-[1425px] mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center py-8 lg:py-0">
+
+          {/* Left — Text content */}
+          <div className="space-y-6 text-center lg:text-left">
+
+            {/* Headline */}
+            <div className="space-y-3">
+              <p className="font-['Montserrat'] font-semibold text-[26px] sm:text-[32px] lg:text-[40px] leading-tight text-gray-300">
+                Play Quiz.<br />Challenge Yourself.
+              </p>
+              <h1 className="font-['Montserrat'] font-bold text-[38px] sm:text-[50px] lg:text-[62px] leading-tight text-red-500">
+                Win Real Cash!
+              </h1>
+            </div>
+
+            {/* Description */}
+            <p className="text-gray-400 text-base max-w-md mx-auto lg:mx-0 leading-relaxed">
+              Join India's most trusted quiz contest platform. Compete, learn and win exciting rewards.
+            </p>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 items-center justify-center lg:justify-start">
+              <Link
+                to="/contests"
+                className="w-full max-w-[240px] sm:w-[196px] h-[50px] flex items-center justify-center rounded-lg bg-gradient-to-r from-red-600 to-red-500 text-white font-bold text-sm transition duration-300 hover:from-red-500 hover:to-red-600"
+              >
+                Explore Contests
+              </Link>
+              <Link
+                to="/how-it-works"
+                className="w-full max-w-[240px] sm:w-[196px] h-[50px] flex items-center justify-center rounded-lg border-2 border-red-600 text-white font-semibold text-sm transition duration-300 hover:bg-red-600"
+              >
+                How It Works
+              </Link>
+            </div>
+
+            {/* Stats row */}
+            <div className="flex items-center gap-8 justify-center lg:justify-start pt-1">
+              {stats.map((stat, i) => (
+                <div key={i} className="flex flex-col items-center gap-1">
+                  <span className="text-red-500">{stat.icon}</span>
+                  <span className="text-sm font-bold text-white">{stat.count}</span>
+                  <span className="text-[11px] text-gray-400 font-medium uppercase tracking-wide">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right — Trophy image */}
+          <div className="flex justify-center items-center relative">
+            <img
+              src="/trophy-hero.png"
+              alt="Trophy"
+              className="w-[260px] sm:w-[360px] lg:w-[460px] h-auto select-none drop-shadow-[0_20px_50px_rgba(239,68,68,0.18)]"
+              draggable="false"
+            />
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Hero;
