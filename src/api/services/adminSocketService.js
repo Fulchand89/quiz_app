@@ -1,43 +1,57 @@
-import { io } from 'socket.io-client';
-import Cookies from 'js-cookie';
+// Mock socket service to prevent connection errors when backend is not running
+
+class DummySocket {
+  constructor() {
+    this.connected = true;
+    this.listeners = {};
+    console.log('⚡ Initialized Mock Admin Socket (Local mode)');
+  }
+
+  on(event, callback) {
+    if (!this.listeners[event]) {
+      this.listeners[event] = [];
+    }
+    this.listeners[event].push(callback);
+    return this;
+  }
+
+  off(event, callback) {
+    if (!this.listeners[event]) return this;
+    if (!callback) {
+      delete this.listeners[event];
+    } else {
+      this.listeners[event] = this.listeners[event].filter(cb => cb !== callback);
+    }
+    return this;
+  }
+
+  emit(event, data) {
+    if (this.listeners[event]) {
+      this.listeners[event].forEach(cb => {
+        try {
+          cb(data);
+        } catch (err) {
+          console.error(`Error in socket listener for ${event}:`, err);
+        }
+      });
+    }
+    return this;
+  }
+
+  disconnect() {
+    this.connected = false;
+    this.listeners = {};
+    console.log('⚡ Mock Admin Socket Disconnected');
+    return this;
+  }
+}
 
 let socket = null;
 
 export const initAdminSocket = () => {
-  const token = Cookies.get('adminToken') || localStorage.getItem('adminToken') || localStorage.getItem('token');
-
-  if (socket && socket.connected) {
-    return socket;
+  if (!socket) {
+    socket = new DummySocket();
   }
-
-  // Socket server endpoint (same origin or API base domain)
-  const SERVER_URL = import.meta.env.VITE_API_URL 
-    ? import.meta.env.VITE_API_URL.replace(/\/api\/v1\/?$/, '') 
-    : 'http://localhost:6060';
-
-  socket = io(SERVER_URL, {
-    auth: {
-      token: token ? `Bearer ${token}` : ''
-    },
-    transports: ['websocket', 'polling'],
-    autoConnect: true,
-    reconnection: true,
-    reconnectionAttempts: 10,
-    reconnectionDelay: 2000,
-  });
-
-  socket.on('connect', () => {
-    console.log('⚡ Admin Socket Connected:', socket.id);
-  });
-
-  socket.on('disconnect', (reason) => {
-    console.log('⚡ Admin Socket Disconnected:', reason);
-  });
-
-  socket.on('connect_error', (error) => {
-    console.warn('⚡ Admin Socket Connection Error:', error.message);
-  });
-
   return socket;
 };
 

@@ -15,9 +15,17 @@ import {
   CreditCard,
   AlertCircle,
   ImageIcon,
+  Lock,
+  Mail,
+  Eye,
+  EyeOff,
+  KeyRound,
+  ShieldCheck,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { systemSettingsService } from '../../api/services/systemSettingsService';
+import authService from '../../api/services/authService';
+import { useAuth } from '../../hooks/useAuth';
 import { getImageUrl } from '../../utils/image';
 
 /* ── Toggle Switch Component ── */
@@ -87,11 +95,33 @@ function NotifRow({ icon: Icon, title, desc, settingKey, settings, onToggle, col
 
 /* ── Main Settings Page ── */
 const SettingsPage = () => {
+  const { user, updateProfile } = useAuth();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [imgLoading, setImgLoading] = useState(true);
   const [logoFile, setLogoFile] = useState(null);
   const [activeTab, setActiveTab] = useState('general');
+
+  // ── Security Tab State ──
+  const [emailData, setEmailData] = useState({ newEmail: '' });
+  const [isSavingEmail, setIsSavingEmail] = useState(false);
+
+  const [passwordData, setPasswordData] = useState({
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: '',
+  });
+  const [showCurrentPw, setShowCurrentPw] = useState(false);
+  const [showNewPw, setShowNewPw] = useState(false);
+  const [showConfirmPw, setShowConfirmPw] = useState(false);
+  const [isSavingPassword, setIsSavingPassword] = useState(false);
+
+  // Populate email field from current user
+  useEffect(() => {
+    if (user?.email) {
+      setEmailData({ newEmail: user.email });
+    }
+  }, [user]);
 
   const [settings, setSettings] = useState({
     platformName: 'KnowChamp',
@@ -167,9 +197,55 @@ const SettingsPage = () => {
     }
   };
 
+  // ── Email Change Handler ──
+  const handleEmailChange = async (e) => {
+    e.preventDefault();
+    const trimmed = emailData.newEmail.trim();
+    if (!trimmed) return toast.error('Email address is required.');
+    if (!/\S+@\S+\.\S+/.test(trimmed)) return toast.error('Please enter a valid email address.');
+    if (trimmed === user?.email) return toast.error('New email is the same as current email.');
+    try {
+      setIsSavingEmail(true);
+      const data = new FormData();
+      data.append('name', user?.name || '');
+      data.append('email', trimmed);
+      await updateProfile(data);
+      toast.success('Login email updated successfully!');
+    } catch (err) {
+      const msg = err?.response?.data?.message || 'Failed to update email. Please try again.';
+      toast.error(msg);
+    } finally {
+      setIsSavingEmail(false);
+    }
+  };
+
+  // ── Password Change Handler ──
+  const handlePasswordChange = async (e) => {
+    e.preventDefault();
+    if (!passwordData.currentPassword) return toast.error('Please enter your current password.');
+    if (!passwordData.newPassword) return toast.error('Please enter a new password.');
+    if (passwordData.newPassword.length < 6) return toast.error('New password must be at least 6 characters.');
+    if (passwordData.newPassword !== passwordData.confirmPassword) return toast.error('New passwords do not match.');
+    try {
+      setIsSavingPassword(true);
+      const res = await authService.changePassword({
+        currentPassword: passwordData.currentPassword,
+        newPassword: passwordData.newPassword,
+      });
+      toast.success(res?.message || 'Password updated successfully!');
+      setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
+    } catch (err) {
+      const msg = err?.response?.data?.message || 'Failed to update password. Please try again.';
+      toast.error(msg);
+    } finally {
+      setIsSavingPassword(false);
+    }
+  };
+
   const TABS = [
     { id: 'general', label: 'General', icon: Globe },
     { id: 'notifications', label: 'Notifications', icon: Bell },
+    { id: 'security', label: 'Security', icon: ShieldCheck },
   ];
 
   const activeNotifCount = [
@@ -378,6 +454,184 @@ const SettingsPage = () => {
           </>
         )}
 
+        {/* ── Security Tab ── */}
+        {activeTab === 'security' && (
+          <>
+            {/* Change Login Email */}
+            <SectionCard
+              icon={Mail}
+              title="Change Login Email"
+              subtitle="Update the email address used to log in to the admin panel."
+              badge="Credentials"
+            >
+              <form onSubmit={handleEmailChange} className="space-y-4">
+                {/* Current Email (read-only) */}
+                <div>
+                  <label className="block text-xs font-semibold text-white/80 mb-2">
+                    Current Email
+                  </label>
+                  <div className="relative">
+                    <Mail className="w-4 h-4 text-white/30 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="text"
+                      value={user?.email || '—'}
+                      disabled
+                      className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-white/8 bg-white/4 text-sm font-medium text-white/40 cursor-not-allowed"
+                    />
+                  </div>
+                </div>
+
+                {/* New Email */}
+                <div>
+                  <label className="block text-xs font-semibold text-white/80 mb-2">
+                    New Email Address <span className="text-[#E94B4B]">*</span>
+                  </label>
+                  <div className="relative">
+                    <Mail className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <input
+                      type="email"
+                      value={emailData.newEmail}
+                      onChange={(e) => setEmailData({ newEmail: e.target.value })}
+                      placeholder="Enter new email address"
+                      required
+                      className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm font-medium text-white placeholder-white/25 focus:outline-none focus:border-[#E94B4B] focus:ring-1 focus:ring-[#E94B4B]/30 transition-all"
+                    />
+                  </div>
+                  <p className="text-[11px] text-white/35 mt-1.5">
+                    You will use this email on the next login.
+                  </p>
+                </div>
+
+                <div className="flex justify-end pt-2">
+                  <button
+                    type="submit"
+                    disabled={isSavingEmail}
+                    className="flex items-center gap-2 px-5 py-2.5 text-white rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed hover:opacity-90"
+                    style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
+                  >
+                    {isSavingEmail ? (
+                      <><RotateCw className="w-4 h-4 animate-spin" /><span>Saving...</span></>
+                    ) : (
+                      <><Save className="w-4 h-4" /><span>Update Email</span></>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </SectionCard>
+
+            {/* Change Password */}
+            <SectionCard
+              icon={Lock}
+              title="Change Login Password"
+              subtitle="Set a new password to secure access to the admin panel."
+              badge="Security"
+            >
+              <form onSubmit={handlePasswordChange} className="space-y-4">
+                {/* Current Password */}
+                <div>
+                  <label className="block text-xs font-semibold text-white/80 mb-2">
+                    Current Password <span className="text-[#E94B4B]">*</span>
+                  </label>
+                  <div className="relative">
+                    <Lock className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                    <input
+                      type={showCurrentPw ? 'text' : 'password'}
+                      value={passwordData.currentPassword}
+                      onChange={(e) => setPasswordData(prev => ({ ...prev, currentPassword: e.target.value }))}
+                      placeholder="Enter current password"
+                      required
+                      className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm font-medium text-white placeholder-white/25 focus:outline-none focus:border-[#E94B4B] focus:ring-1 focus:ring-[#E94B4B]/30 transition-all"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowCurrentPw(!showCurrentPw)}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70 cursor-pointer transition-colors"
+                    >
+                      {showCurrentPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* New Password */}
+                  <div>
+                    <label className="block text-xs font-semibold text-white/80 mb-2">
+                      New Password <span className="text-[#E94B4B]">*</span>
+                    </label>
+                    <div className="relative">
+                      <KeyRound className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                      <input
+                        type={showNewPw ? 'text' : 'password'}
+                        value={passwordData.newPassword}
+                        onChange={(e) => setPasswordData(prev => ({ ...prev, newPassword: e.target.value }))}
+                        placeholder="Min 6 characters"
+                        required
+                        minLength={6}
+                        className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm font-medium text-white placeholder-white/25 focus:outline-none focus:border-[#E94B4B] focus:ring-1 focus:ring-[#E94B4B]/30 transition-all"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowNewPw(!showNewPw)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70 cursor-pointer transition-colors"
+                      >
+                        {showNewPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Confirm New Password */}
+                  <div>
+                    <label className="block text-xs font-semibold text-white/80 mb-2">
+                      Confirm New Password <span className="text-[#E94B4B]">*</span>
+                    </label>
+                    <div className="relative">
+                      <KeyRound className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                      <input
+                        type={showConfirmPw ? 'text' : 'password'}
+                        value={passwordData.confirmPassword}
+                        onChange={(e) => setPasswordData(prev => ({ ...prev, confirmPassword: e.target.value }))}
+                        placeholder="Re-enter new password"
+                        required
+                        minLength={6}
+                        className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm font-medium text-white placeholder-white/25 focus:outline-none focus:border-[#E94B4B] focus:ring-1 focus:ring-[#E94B4B]/30 transition-all"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowConfirmPw(!showConfirmPw)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white/70 cursor-pointer transition-colors"
+                      >
+                        {showConfirmPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Password Strength Notice */}
+                <div className="flex items-start gap-2.5 p-3 bg-white/4 rounded-xl border border-white/8">
+                  <ShieldCheck className="w-4 h-4 text-[#E94B4B] shrink-0 mt-0.5" />
+                  <p className="text-[11px] text-white/45 leading-relaxed">
+                    Use at least <span className="text-white/70 font-semibold">8 characters</span> with a mix of letters, numbers, and symbols for a strong password. Avoid reusing old passwords.
+                  </p>
+                </div>
+
+                <div className="flex justify-end pt-2">
+                  <button
+                    type="submit"
+                    disabled={isSavingPassword}
+                    className="flex items-center gap-2 px-5 py-2.5 bg-gray-900 hover:bg-black text-white rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {isSavingPassword ? (
+                      <><RotateCw className="w-4 h-4 animate-spin" /><span>Updating...</span></>
+                    ) : (
+                      <><KeyRound className="w-4 h-4 text-[#E94B4B]" /><span>Update Password</span></>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </SectionCard>
+          </>
+        )}
+
         {/* ── Notifications Tab ── */}
         {activeTab === 'notifications' && (
           <>
@@ -444,37 +698,39 @@ const SettingsPage = () => {
           </>
         )}
 
-        {/* ── Save Button ── */}
-        <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-          <button
-            type="button"
-            onClick={fetchBackendSettings}
-            disabled={loading}
-            className="flex items-center gap-2 px-4 py-2.5 border border-white/10 hover:bg-white/5 text-white/60 hover:text-white rounded-xl text-xs font-semibold transition-all cursor-pointer disabled:opacity-50"
-          >
-            <RotateCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
-            <span>Reload Settings</span>
-          </button>
+        {/* ── Save Button (only shown on non-security tabs) ── */}
+        {activeTab !== 'security' && (
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+            <button
+              type="button"
+              onClick={fetchBackendSettings}
+              disabled={loading}
+              className="flex items-center gap-2 px-4 py-2.5 border border-white/10 hover:bg-white/5 text-white/60 hover:text-white rounded-xl text-xs font-semibold transition-all cursor-pointer disabled:opacity-50"
+            >
+              <RotateCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
+              <span>Reload Settings</span>
+            </button>
 
-          <button
-            type="submit"
-            disabled={saving}
-            className="flex items-center gap-2 px-6 py-2.5 text-white rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed hover:opacity-90"
-            style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
-          >
-            {saving ? (
-              <>
-                <RotateCw className="w-4 h-4 animate-spin" />
-                <span>Saving...</span>
-              </>
-            ) : (
-              <>
-                <Save className="w-4 h-4" />
-                <span>Save Platform Settings</span>
-              </>
-            )}
-          </button>
-        </div>
+            <button
+              type="submit"
+              disabled={saving}
+              className="flex items-center gap-2 px-6 py-2.5 text-white rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed hover:opacity-90"
+              style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
+            >
+              {saving ? (
+                <>
+                  <RotateCw className="w-4 h-4 animate-spin" />
+                  <span>Saving...</span>
+                </>
+              ) : (
+                <>
+                  <Save className="w-4 h-4" />
+                  <span>Save Platform Settings</span>
+                </>
+              )}
+            </button>
+          </div>
+        )}
 
       </form>
     </div>
