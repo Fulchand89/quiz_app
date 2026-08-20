@@ -118,7 +118,7 @@ const HowItWorks = () => {
           <div>
             <Link 
               to="/contests"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-red-600 to-orange-500 hover:from-red-500 hover:to-orange-400 text-white font-bold rounded-xl shadow-lg transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-4 btn-brand-primary text-white font-bold rounded-xl shadow-lg transition-all duration-300"
             >
               Start Playing Now
               <ArrowRight className="w-5 h-5" />

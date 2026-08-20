@@ -13,7 +13,7 @@ const ManageTransactions = () => {
   ];
 
   const columns = [
-    { key: 'id', label: 'TXN ID', cellClassName: 'font-mono text-[#fb7185]' },
+    { key: 'id', label: 'TXN ID', cellClassName: 'font-mono text-[#E94B4B]' },
     { key: 'user', label: 'User', cellClassName: 'font-semibold' },
     {
       key: 'type',
@@ -65,7 +65,7 @@ const ManageTransactions = () => {
               placeholder="Search by Txn ID or User..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]"
+              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B]"
             />
           </div>
           <div className="flex gap-2">

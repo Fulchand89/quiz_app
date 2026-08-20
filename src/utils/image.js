@@ -1,4 +1,4 @@
-const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:7000';
+const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:6060';
 
 /**
  * Formats a relative upload image path to a full backend URL.

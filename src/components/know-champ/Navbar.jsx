@@ -20,15 +20,9 @@ const Navbar = () => {
     { name: "Contests", path: "/contests" },
     { name: "How It Works", path: "/how-it-works" },
     { name: "Leaderboard", path: "/leaderboard" },
-    {
-      name: "Excellence League",
-      path: "/leaderboard",
-      isExcellence: true,
-    },
   ];
 
-  const isActive = (path, isExcellence = false) => {
-    if (isExcellence) return false;
+  const isActive = (path) => {
     return location.pathname === path;
   };
 
@@ -61,7 +55,7 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-12">
               {navLinks.map((link, idx) => {
-                const active = isActive(link.path, link.isExcellence);
+                const active = isActive(link.path);
 
                 return (
                   <Link
@@ -83,11 +77,10 @@ const Navbar = () => {
               })}
             </div>
 
-            {/* Desktop Register Button */}
             <div className="hidden md:block">
               <button
                 type="button"
-                className="w-[144px] h-[43px] px-[33px] pt-[11px] pb-[10px] flex items-center justify-center gap-[10px] rounded-[6px] bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-600 text-white font-bold text-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(239,68,68,0.5)]"
+                className="w-[144px] h-[43px] px-[33px] pt-[11px] pb-[10px] flex items-center justify-center gap-[10px] rounded-[6px] btn-brand-primary text-white font-bold text-sm"
               >
                 Register
               </button>
@@ -152,7 +145,7 @@ const Navbar = () => {
         {/* Mobile Navigation Links */}
         <div className="flex-1 px-4 pt-4 pb-6 space-y-1">
           {navLinks.map((link, idx) => {
-            const active = isActive(link.path, link.isExcellence);
+            const active = isActive(link.path);
 
             return (
               <Link
@@ -171,12 +164,11 @@ const Navbar = () => {
           })}
         </div>
 
-        {/* Mobile Register Button */}
         <div className="px-5 py-5 border-t border-gray-800/60">
           <button
             type="button"
             onClick={closeMenu}
-            className="w-full h-[43px] flex items-center justify-center rounded-[6px] bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-600 text-white font-bold text-sm transition-all duration-300 hover:shadow-[0_0_15px_rgba(239,68,68,0.5)]"
+            className="w-full h-[43px] flex items-center justify-center rounded-[6px] btn-brand-primary text-white font-bold text-sm"
           >
             Register
           </button>

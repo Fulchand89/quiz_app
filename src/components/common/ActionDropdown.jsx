@@ -65,7 +65,7 @@ const ActionDropdown = ({ onEdit, onChangePassword, onToggleStatus, isActive = t
             setIsOpen(false);
             if (onEdit) onEdit();
           }}
-          className="w-full flex items-center gap-2 px-3 py-2.5 text-xs text-white hover:bg-gray-800 hover:text-[#fb7185] transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full flex items-center gap-2 px-3 py-2.5 text-xs text-white hover:bg-gray-800 hover:text-[#E94B4B] transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <Edit className="w-4 h-4 text-gray-400" />
           <span className="font-medium">Edit Profile</span>
@@ -79,7 +79,7 @@ const ActionDropdown = ({ onEdit, onChangePassword, onToggleStatus, isActive = t
             setIsOpen(false);
             if (onChangePassword) onChangePassword();
           }}
-          className="w-full flex items-center gap-2 px-3 py-2.5 text-xs text-white hover:bg-gray-800 hover:text-[#fb7185] transition-colors border-t border-gray-600 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full flex items-center gap-2 px-3 py-2.5 text-xs text-white hover:bg-gray-800 hover:text-[#E94B4B] transition-colors border-t border-gray-600 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <KeyRound className="w-4 h-4 text-amber-600" />
           <span className="font-medium">Change Password</span>
@@ -134,10 +134,10 @@ const ActionDropdown = ({ onEdit, onChangePassword, onToggleStatus, isActive = t
         ref={buttonRef}
         disabled={isLoading}
         onClick={toggleDropdown}
-        className="text-[#fb7185] hover:bg-[#fff1f2] p-1.5 rounded-lg transition-colors cursor-pointer focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+        className="text-[#E94B4B] hover:bg-[#E94B4B]/10 p-1.5 rounded-lg transition-colors cursor-pointer focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isLoading ? (
-          <Loader2 className="w-4 h-4 animate-spin text-[#fb7185]" />
+          <Loader2 className="w-4 h-4 animate-spin text-[#E94B4B]" />
         ) : (
           <MoreVertical className="w-4 h-4" />
         )}

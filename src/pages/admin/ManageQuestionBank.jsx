@@ -13,7 +13,7 @@ const ManageQuestionBank = () => {
   ];
 
   const columns = [
-    { key: 'id', label: 'QID', cellClassName: 'font-mono text-[#fb7185]' },
+    { key: 'id', label: 'QID', cellClassName: 'font-mono text-[#E94B4B]' },
     { key: 'question', label: 'Question text', cellClassName: 'font-medium max-w-[280px] truncate' },
     { key: 'subject', label: 'Subject', cellClassName: 'text-gray-300' },
     { key: 'topic', label: 'Topic', cellClassName: 'text-gray-400 text-sm' },
@@ -55,7 +55,10 @@ const ManageQuestionBank = () => {
           <h1 className="text-xl font-bold">Question Bank</h1>
           <p className="text-xs text-gray-400 mt-1">Review, filter, edit or add individual quiz questions.</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-[#fb7185] hover:bg-[#a86634] text-white rounded-lg text-sm font-semibold transition-all cursor-pointer">
+        <button
+          className="flex items-center gap-2 px-4 py-2 text-white rounded-lg text-sm font-semibold transition-all cursor-pointer hover:opacity-90"
+          style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
+        >
           <Plus size={16} /> Add Question
         </button>
       </div>
@@ -69,7 +72,7 @@ const ManageQuestionBank = () => {
               placeholder="Search questions by text..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]"
+              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B]"
             />
           </div>
           <div className="flex gap-2">

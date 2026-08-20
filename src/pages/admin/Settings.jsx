@@ -28,8 +28,9 @@ function ToggleSwitch({ checked, onChange, disabled = false }) {
       onClick={onChange}
       disabled={disabled}
       className={`relative inline-flex h-6 w-11 items-center rounded-full transition-all duration-200 focus:outline-none shrink-0 ${
-        checked ? 'bg-[#e11d48]' : 'bg-white/15'
+        checked ? '' : 'bg-white/15'
       } ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+      style={checked ? { background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' } : {}}
     >
       <span
         className={`inline-block h-4 w-4 transform rounded-full bg-white shadow-md transition-transform duration-200 ${
@@ -44,10 +45,10 @@ function ToggleSwitch({ checked, onChange, disabled = false }) {
 function SectionCard({ icon: Icon, title, subtitle, children, badge }) {
   return (
     <div className="bg-[#0f1117] rounded-2xl border border-white/10 overflow-hidden">
-      <div className="px-5 py-4 border-b border-white/10 flex items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-xl bg-[#e11d48]/15 flex items-center justify-center shrink-0">
-            <Icon className="w-4.5 h-4.5 text-[#e11d48]" style={{ width: '18px', height: '18px' }} />
+      <div className="px-5 py-4 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between items-start gap-3">
+        <div className="flex items-start sm:items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-[#E94B4B]/15 flex items-center justify-center shrink-0">
+            <Icon className="w-4.5 h-4.5 text-[#E94B4B]" style={{ width: '18px', height: '18px' }} />
           </div>
           <div>
             <h2 className="text-sm font-bold text-white">{title}</h2>
@@ -55,7 +56,7 @@ function SectionCard({ icon: Icon, title, subtitle, children, badge }) {
           </div>
         </div>
         {badge && (
-          <span className="text-[10px] font-bold px-2.5 py-1 rounded-lg bg-[#e11d48]/15 text-[#e11d48] border border-[#e11d48]/20 shrink-0">
+          <span className="text-[10px] font-bold px-2.5 py-1 rounded-lg bg-[#E94B4B]/15 text-[#E94B4B] border border-[#E94B4B]/20 shrink-0 self-start sm:self-auto">
             {badge}
           </span>
         )}
@@ -66,7 +67,7 @@ function SectionCard({ icon: Icon, title, subtitle, children, badge }) {
 }
 
 /* ── Notification Row ── */
-function NotifRow({ icon: Icon, title, desc, settingKey, settings, onToggle, color = 'text-[#e11d48]' }) {
+function NotifRow({ icon: Icon, title, desc, settingKey, settings, onToggle, color = 'text-[#E94B4B]' }) {
   const isOn = settings[settingKey] !== false;
   return (
     <div className="flex items-center justify-between gap-4 py-3.5 border-b border-white/6 last:border-0">
@@ -76,7 +77,7 @@ function NotifRow({ icon: Icon, title, desc, settingKey, settings, onToggle, col
         </div>
         <div className="min-w-0">
           <h4 className="text-xs font-semibold text-white leading-snug">{title}</h4>
-          <p className="text-[11px] text-white/45 mt-0.5 leading-relaxed truncate">{desc}</p>
+          <p className="text-[11px] text-white/45 mt-0.5 leading-relaxed break-words">{desc}</p>
         </div>
       </div>
       <ToggleSwitch checked={isOn} onChange={() => onToggle(settingKey)} />
@@ -180,13 +181,13 @@ const SettingsPage = () => {
   ].filter(Boolean).length;
 
   return (
-    <div className="space-y-5 max-w-4xl">
+    <div className="space-y-5 w-full">
 
       {/* ── Page Header ── */}
       <div className="bg-[#0f1117] rounded-2xl border border-white/10 px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#e11d48]/15 flex items-center justify-center">
-            <Settings className="w-5 h-5 text-[#e11d48]" />
+          <div className="w-10 h-10 rounded-xl bg-[#E94B4B]/15 flex items-center justify-center">
+            <Settings className="w-5 h-5 text-[#E94B4B]" />
           </div>
           <div>
             <h1 className="text-lg sm:text-xl font-bold text-white">Platform Settings</h1>
@@ -196,15 +197,15 @@ const SettingsPage = () => {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center flex-wrap gap-2">
           {/* Status chips */}
           <div className="flex items-center gap-1.5 px-3 py-1.5 bg-green-500/10 border border-green-500/20 rounded-lg">
             <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
             <span className="text-[11px] font-semibold text-green-400">System Active</span>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#e11d48]/10 border border-[#e11d48]/20 rounded-lg">
-            <Bell className="w-3 h-3 text-[#e11d48]" />
-            <span className="text-[11px] font-semibold text-[#e11d48]">{activeNotifCount}/5 Alerts On</span>
+          <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#E94B4B]/10 border border-[#E94B4B]/20 rounded-lg">
+            <Bell className="w-3 h-3 text-[#E94B4B]" />
+            <span className="text-[11px] font-semibold text-[#E94B4B]">{activeNotifCount}/5 Alerts On</span>
           </div>
         </div>
       </div>
@@ -221,9 +222,10 @@ const SettingsPage = () => {
               onClick={() => setActiveTab(tab.id)}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-150 cursor-pointer ${
                 isActive
-                  ? 'bg-[#e11d48] text-white shadow-sm'
+                  ? 'text-white shadow-sm'
                   : 'text-white/50 hover:text-white hover:bg-white/8'
               }`}
+              style={isActive ? { background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' } : {}}
             >
               <Icon className="w-3.5 h-3.5" />
               {tab.label}
@@ -256,7 +258,7 @@ const SettingsPage = () => {
                     value={settings.platformName}
                     onChange={(e) => handleChange('platformName', e.target.value)}
                     placeholder="KnowChamp"
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm font-medium text-white placeholder-white/25 focus:outline-none focus:border-[#e11d48] focus:ring-1 focus:ring-[#e11d48]/30 transition-all"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-white/10 bg-white/5 text-sm font-medium text-white placeholder-white/25 focus:outline-none focus:border-[#E94B4B] focus:ring-1 focus:ring-[#E94B4B]/30 transition-all"
                   />
                   <p className="text-[11px] text-white/35 mt-1.5">
                     Shown in sidebar, header, and email templates.
@@ -268,7 +270,7 @@ const SettingsPage = () => {
                   <label className="block text-xs font-semibold text-white/80 mb-2">
                     Platform Logo
                   </label>
-                  <div className="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
                     {/* Preview */}
                     <div className="w-16 h-16 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center overflow-hidden shrink-0 relative">
                       {imgLoading && (
@@ -294,7 +296,7 @@ const SettingsPage = () => {
                     {/* Actions */}
                     <div className="flex-1 min-w-0 space-y-2.5">
                       <div className="flex flex-wrap items-center gap-2">
-                        <label className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#e11d48] hover:bg-[#9f1239] text-white text-[11px] font-bold rounded-lg transition-all cursor-pointer">
+                        <label className="inline-flex items-center gap-1.5 px-3 py-1.5 text-white text-[11px] font-bold rounded-lg transition-all cursor-pointer hover:opacity-90" style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}>
                           <Upload className="w-3 h-3" />
                           <span>Upload Logo</span>
                           <input
@@ -392,7 +394,7 @@ const SettingsPage = () => {
                 settingKey="realtimeSocketAlerts"
                 settings={settings}
                 onToggle={handleToggle}
-                color="text-[#e11d48]"
+                color="text-[#E94B4B]"
               />
               <NotifRow
                 icon={Trophy}
@@ -443,7 +445,7 @@ const SettingsPage = () => {
         )}
 
         {/* ── Save Button ── */}
-        <div className="flex items-center justify-between pt-1">
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
           <button
             type="button"
             onClick={fetchBackendSettings}
@@ -457,7 +459,8 @@ const SettingsPage = () => {
           <button
             type="submit"
             disabled={saving}
-            className="flex items-center gap-2 px-6 py-2.5 bg-[#e11d48] hover:bg-[#9f1239] text-white rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 px-6 py-2.5 text-white rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed hover:opacity-90"
+            style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
           >
             {saving ? (
               <>

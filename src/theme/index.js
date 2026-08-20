@@ -1,14 +1,14 @@
 export const THEME = {
   colors: {
-    primary: '#e11d48',
-    primaryDark: '#9f1239',
-    primaryLight: '#e11d48',
+    primary: '#E94B4B',
+    primaryDark: '#911616',
+    primaryLight: '#E94B4B',
     white: '#ffffff',
   },
   classes: {
     sidebarBg: 'bg-[#090b15]',
-    sidebarTextActive: 'text-[#e11d48]',
-    sidebarIconActive: 'text-[#e11d48]',
+    sidebarTextActive: 'text-[#E94B4B]',
+    sidebarIconActive: 'text-[#E94B4B]',
   }
 };
 

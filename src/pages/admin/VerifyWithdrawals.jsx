@@ -12,7 +12,7 @@ const VerifyWithdrawals = () => {
   ];
 
   const columns = [
-    { key: 'id', label: 'Withdrawal ID', cellClassName: 'font-mono text-[#fb7185]' },
+    { key: 'id', label: 'Withdrawal ID', cellClassName: 'font-mono text-[#E94B4B]' },
     { key: 'user', label: 'User Name', cellClassName: 'font-semibold' },
     { key: 'amount', label: 'Requested Amount', cellClassName: 'text-white font-bold' },
     { key: 'target', label: 'Destination Account/UPI', cellClassName: 'text-gray-300 font-mono text-sm' },
@@ -40,7 +40,7 @@ const VerifyWithdrawals = () => {
             <button className="flex items-center gap-1 px-2.5 py-1 bg-green-600 hover:bg-green-700 text-white rounded text-xs font-semibold cursor-pointer">
               <Check size={12} /> Approve
             </button>
-            <button className="flex items-center gap-1 px-2.5 py-1 bg-red-600 hover:bg-red-700 text-white rounded text-xs font-semibold cursor-pointer">
+            <button className="flex items-center gap-1 px-2.5 py-1 text-white rounded text-xs font-semibold cursor-pointer hover:opacity-90" style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}>
               <X size={12} /> Reject
             </button>
           </div>
@@ -69,7 +69,7 @@ const VerifyWithdrawals = () => {
               placeholder="Search by Withdrawal ID or User..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]"
+              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B]"
             />
           </div>
           <div className="flex gap-2">

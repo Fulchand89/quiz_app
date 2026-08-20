@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ICONS } from '../constants/icons';
 import { ROUTES } from '../constants/routes';
@@ -6,15 +6,15 @@ import { THEME } from '../theme';
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6 selection:bg-[#fb7185]/30 relative ">
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-6 selection:bg-[#E94B4B]/30 relative ">
       <div className="w-full max-w-lg bg-white rounded-3xl shadow-md    p-10 md:p-14 text-center mt-16 md:mt-0">
 
         {/* 404 Text */}
         <div className="relative inline-block mb-4">
-          <h1 className="text-[120px] leading-none font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#fb7185] to-[#be123c] select-none tracking-tighter">
+          <h1 className="text-[120px] leading-none font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E94B4B] to-[#911616] select-none tracking-tighter">
             404
           </h1>
-          <ICONS.ExclamationTriangle className="w-12 h-12 text-[#fb7185] absolute -top-4 -right-8 -rotate-12" />
+          <ICONS.ExclamationTriangle className="w-12 h-12 text-[#E94B4B] absolute -top-4 -right-8 -rotate-12" />
         </div>
 
         <h2 className="text-3xl font-bold text-gray-800 mb-4 tracking-tight">
@@ -48,7 +48,7 @@ const NotFound = () => {
 
       {/* Decorative footer text */}
       <p className="text-gray-400 text-xs font-medium mt-10 tracking-wider uppercase">
-        &copy; {new Date().getFullYear()} 驼运帮 Camel Logistics. All rights reserved.
+        &copy; {new Date().getFullYear()} KnowChamp. All rights reserved.
       </p>
     </div>
   );

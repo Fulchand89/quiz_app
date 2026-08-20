@@ -1,37 +1,114 @@
-import React, { useState } from 'react';
-import { Trophy, HelpCircle, Coins, Clock, Info } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Trophy, HelpCircle, Coins, Clock, Info, Calendar } from 'lucide-react';
+import { categoryService } from '../../api/services/categoryService';
 
 const CreateContest = () => {
   const [successMsg, setSuccessMsg] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  // Form states
+  const [title, setTitle] = useState('');
+  const [categoryId, setCategoryId] = useState('');
+  const [subject, setSubject] = useState('');
+  const [entryFee, setEntryFee] = useState('');
+  const [prizePool, setPrizePool] = useState('');
+  const [maxParticipants, setMaxParticipants] = useState('');
+  const [startTime, setStartTime] = useState('');
+  const [numQuestions, setNumQuestions] = useState('10 Questions (Standard)');
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await categoryService.getCategories();
+        if (res?.success && res.data) {
+          setCategories(res.data);
+        }
+      } catch (err) {
+        console.error('Error loading categories:', err);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  const handleOpenPicker = (e) => {
+    const input = e.currentTarget.querySelector('input') || e.target;
+    if (input && typeof input.showPicker === 'function') {
+      try {
+        input.showPicker();
+      } catch (err) {
+        // Fallback for browser restrictions
+      }
+    }
+  };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 w-full">
       <div className="bg-[#0f1117] text-white p-5 rounded-2xl shadow-sm border border-white/10">
         <h1 className="text-xl font-bold">Create Contest</h1>
         <p className="text-xs text-gray-400 mt-1">Configure and launch a new live or scheduled quiz contest.</p>
       </div>
 
-      <div className="bg-[#0f1117] text-white p-6 rounded-2xl border border-white/10 max-w-4xl space-y-6">
-        <h2 className="text-lg font-bold flex items-center gap-2"><Trophy className="text-[#fb7185]" /> Contest Specifications</h2>
+      <div className="bg-[#0f1117] text-white p-4 sm:p-6 rounded-2xl border border-white/10 w-full space-y-6">
+        <h2 className="text-lg font-bold flex items-center gap-2">
+          <Trophy className="text-[#E94B4B]" /> Contest Specifications
+        </h2>
         
         <form onSubmit={(e) => { e.preventDefault(); setSuccessMsg(true); }} className="space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <label className="block text-xs font-bold text-gray-300 mb-1.5">Contest Title</label>
               <input
                 required
                 type="text"
                 placeholder="e.g. Weekly Grand GK Challenge"
-                className="block w-full px-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="block w-full px-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B]"
               />
             </div>
+
             <div>
-              <label className="block text-xs font-bold text-gray-300 mb-1.5">Category & Subject</label>
-              <select required className="block w-full px-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]">
-                <option value="">Select Target Subject</option>
-                <option>General Knowledge - World Geography</option>
-                <option>Science & Tech - Physics</option>
-                <option>Mathematics - Algebra</option>
+              <label className="block text-xs font-bold text-gray-300 mb-1.5">Category</label>
+              <select
+                required
+                value={categoryId}
+                onChange={(e) => setCategoryId(e.target.value)}
+                className="block w-full px-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B] cursor-pointer"
+              >
+                <option value="">Select Category</option>
+                {categories.length > 0 ? (
+                  categories.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.name}
+                    </option>
+                  ))
+                ) : (
+                  <>
+                    <option value="1">General Knowledge</option>
+                    <option value="2">Science & Technology</option>
+                    <option value="3">Mathematics & Logic</option>
+                    <option value="4">History & Culture</option>
+                  </>
+                )}
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-gray-300 mb-1.5">Subject</label>
+              <select
+                required
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                className="block w-full px-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B] cursor-pointer"
+              >
+                <option value="">Select Subject</option>
+                <option value="World Geography">World Geography</option>
+                <option value="Indian History">Indian History</option>
+                <option value="Physics & Astronomy">Physics & Astronomy</option>
+                <option value="Algebra & Geometry">Algebra & Geometry</option>
+                <option value="Current Events">Current Events</option>
+                <option value="General Science">General Science</option>
+                <option value="Sports Trivia">Sports Trivia</option>
               </select>
             </div>
           </div>
@@ -45,7 +122,9 @@ const CreateContest = () => {
                   required
                   type="number"
                   placeholder="e.g. 50"
-                  className="block w-full pl-9 pr-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]"
+                  value={entryFee}
+                  onChange={(e) => setEntryFee(e.target.value)}
+                  className="block w-full pl-9 pr-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B]"
                 />
               </div>
             </div>
@@ -57,7 +136,9 @@ const CreateContest = () => {
                   required
                   type="number"
                   placeholder="e.g. 5000"
-                  className="block w-full pl-9 pr-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]"
+                  value={prizePool}
+                  onChange={(e) => setPrizePool(e.target.value)}
+                  className="block w-full pl-9 pr-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B]"
                 />
               </div>
             </div>
@@ -67,7 +148,9 @@ const CreateContest = () => {
                 required
                 type="number"
                 placeholder="e.g. 100"
-                className="block w-full px-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]"
+                value={maxParticipants}
+                onChange={(e) => setMaxParticipants(e.target.value)}
+                className="block w-full px-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B]"
               />
             </div>
           </div>
@@ -75,30 +158,40 @@ const CreateContest = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
               <label className="block text-xs font-bold text-gray-300 mb-1.5">Contest Starts At</label>
-              <div className="relative">
-                <Clock size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+              <div 
+                onClick={handleOpenPicker}
+                className="relative cursor-pointer"
+              >
+                <Calendar size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#E94B4B] pointer-events-none" />
                 <input
                   required
                   type="datetime-local"
-                  className="block w-full pl-9 pr-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]"
+                  value={startTime}
+                  onChange={(e) => setStartTime(e.target.value)}
+                  className="block w-full pl-9 pr-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B] [color-scheme:dark] cursor-pointer"
                 />
               </div>
             </div>
             <div>
               <label className="block text-xs font-bold text-gray-300 mb-1.5">Number of Questions</label>
-              <select required className="block w-full px-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]">
-                <option>10 Questions (Standard)</option>
-                <option>20 Questions (Grand)</option>
-                <option>30 Questions (Ultra)</option>
+              <select 
+                required 
+                value={numQuestions}
+                onChange={(e) => setNumQuestions(e.target.value)}
+                className="block w-full px-3 py-2 border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B] cursor-pointer"
+              >
+                <option value="10 Questions (Standard)">10 Questions (Standard)</option>
+                <option value="20 Questions (Grand)">20 Questions (Grand)</option>
+                <option value="30 Questions (Ultra)">30 Questions (Ultra)</option>
               </select>
             </div>
           </div>
 
-          <div className="flex justify-end gap-3 pt-4 border-t border-white/10">
-            <button type="button" className="px-4 py-2 border border-gray-600 hover:bg-gray-800 text-white rounded-lg text-sm font-semibold transition-all cursor-pointer">
+          <div className="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-white/10">
+            <button type="button" className="w-full sm:w-auto px-4 py-2 border border-gray-600 hover:bg-gray-800 text-white rounded-lg text-sm font-semibold transition-all cursor-pointer">
               Save Draft
             </button>
-            <button type="submit" className="px-4 py-2 bg-[#fb7185] hover:bg-[#a86634] text-white rounded-lg text-sm font-semibold transition-all cursor-pointer">
+            <button type="submit" className="w-full sm:w-auto px-4 py-2 text-white rounded-lg text-sm font-semibold transition-all cursor-pointer hover:opacity-90" style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}>
               Launch Contest
             </button>
           </div>

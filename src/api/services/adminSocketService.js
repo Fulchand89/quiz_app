@@ -13,7 +13,7 @@ export const initAdminSocket = () => {
   // Socket server endpoint (same origin or API base domain)
   const SERVER_URL = import.meta.env.VITE_API_URL 
     ? import.meta.env.VITE_API_URL.replace(/\/api\/v1\/?$/, '') 
-    : 'http://localhost:5000';
+    : 'http://localhost:6060';
 
   socket = io(SERVER_URL, {
     auth: {

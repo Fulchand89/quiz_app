@@ -58,6 +58,7 @@ const NAV = [
   {
     section: 'CONTENT & SUPPORT',
     items: [
+      { label: 'Manage Features', path: ROUTES.ADMIN.MANAGE_FEATURES, icon: 'Sparkles' },
       { label: 'Privacy Policy', path: ROUTES.ADMIN.PRIVACY_POLICY, icon: 'PrivacyPolicy' },
       { label: 'Terms & Conditions', path: ROUTES.ADMIN.TERMS_CONDITIONS, icon: 'TermsConditions' },
       { label: 'Contact Support', path: ROUTES.ADMIN.SUPPORT_CONTACT, icon: 'SupportContact' },

@@ -178,7 +178,7 @@ export default function Header({ onMenuClick, collapsed, title }) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setSearchFocused(true)}
-              className="w-48 lg:w-64 pl-9 pr-4 py-1.5 text-xs bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-[#fb7185] focus:bg-white/15 transition-all text-white placeholder-white/40"
+              className="w-48 lg:w-64 pl-9 pr-4 py-1.5 text-xs bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:border-[#E94B4B] focus:bg-white/15 transition-all text-white placeholder-white/40"
             />
             <ICONS.Search className="w-4 h-4 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
             {searchQuery && (
@@ -201,10 +201,10 @@ export default function Header({ onMenuClick, collapsed, title }) {
                     setSearchQuery('');
                     setSearchFocused(false);
                   }}
-                  className="px-3.5 py-2 hover:bg-[#fff1f2] cursor-pointer flex items-center justify-between transition-colors border-b border-gray-50 last:border-0"
+                  className="px-3.5 py-2 hover:bg-[#E94B4B]/10 cursor-pointer flex items-center justify-between transition-colors border-b border-gray-50 last:border-0"
                 >
                   <span className="text-xs font-bold text-gray-800">{item.label}</span>
-                  <span className="text-[10px] font-medium text-[#e11d48] bg-[#fff1f2] px-2 py-0.5 rounded-md border border-[#fecdd3]">
+                  <span className="text-[10px] font-medium text-[#E94B4B] bg-[#E94B4B]/10 px-2 py-0.5 rounded-md border border-[#E94B4B]/20">
                     {item.category}
                   </span>
                 </div>
@@ -222,7 +222,7 @@ export default function Header({ onMenuClick, collapsed, title }) {
           >
             <ICONS.Bell className="w-5 h-5 text-white/70" />
             {unreadCount > 0 && (
-              <span className="absolute top-1 right-1 flex items-center justify-center min-w-[16px] h-[16px] px-1 bg-red-500 text-white text-[9px] font-extrabold rounded-full border-2 border-white shadow-xs ">
+              <span className="absolute top-1 right-1 flex items-center justify-center min-w-[16px] h-[16px] px-1 text-white text-[9px] font-extrabold rounded-full border-2 border-white shadow-xs" style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}>
                 {unreadCount > 9 ? '9+' : unreadCount}
               </span>
             )}
@@ -234,7 +234,7 @@ export default function Header({ onMenuClick, collapsed, title }) {
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-white">Notifications</p>
                   {unreadCount > 0 && (
-                    <span className="bg-[#e11d48] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                    <span className="text-white text-[10px] font-bold px-2 py-0.5 rounded-full" style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}>
                       {unreadCount} new
                     </span>
                   )}
@@ -242,7 +242,7 @@ export default function Header({ onMenuClick, collapsed, title }) {
                 {unreadCount > 0 && (
                   <button 
                     onClick={handleMarkAllRead}
-                    className="text-[11px] text-[#fb7185] hover:underline font-bold cursor-pointer"
+                    className="text-[11px] text-[#E94B4B] hover:underline font-bold cursor-pointer"
                   >
                     Mark all read
                   </button>
@@ -263,9 +263,9 @@ export default function Header({ onMenuClick, collapsed, title }) {
                     <div 
                       key={notif.id} 
                       onClick={() => handleMarkSingleRead(notif.id, notif.isRead)}
-                      className={`px-4 py-3 hover:bg-white/8 cursor-pointer transition-colors flex items-start gap-2.5 ${!notif.isRead ? 'bg-[#e11d48]/10' : ''}`}
+                      className={`px-4 py-3 hover:bg-white/8 cursor-pointer transition-colors flex items-start gap-2.5 ${!notif.isRead ? 'bg-[#E94B4B]/10' : ''}`}
                     >
-                      <span className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${!notif.isRead ? 'bg-[#fb7185]' : 'bg-white/25'}`} />
+                      <span className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${!notif.isRead ? 'bg-[#E94B4B]' : 'bg-white/25'}`} />
                       <div className="min-w-0 flex-1">
                         <p className={`text-[12px] leading-snug ${!notif.isRead ? 'font-bold text-white' : 'font-medium text-white/70'}`}>
                           {notif.title}
@@ -288,7 +288,7 @@ export default function Header({ onMenuClick, collapsed, title }) {
                     navigate(ROUTES.ADMIN.NOTIFICATIONS);
                     setNotificationOpen(false);
                   }}
-                  className="w-full text-center py-2 text-[12px] font-bold text-[#fb7185] hover:bg-white/8 rounded-lg transition-colors cursor-pointer"
+                  className="w-full text-center py-2 text-[12px] font-bold text-[#E94B4B] hover:bg-white/8 rounded-lg transition-colors cursor-pointer"
                 >
                   View All Notifications
                 </button>
@@ -304,11 +304,11 @@ export default function Header({ onMenuClick, collapsed, title }) {
             className="flex items-center gap-2 hover:bg-white/10 px-2 py-1.5 rounded-lg cursor-pointer transition-colors"
           >
             <img
-              src={user?.profilePicUrl ? getImageUrl(user.profilePicUrl) : `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || 'Admin')}&background=e11d48&color=fff`}
+              src={user?.profilePicUrl ? getImageUrl(user.profilePicUrl) : `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || 'Admin')}&background=E94B4B&color=fff`}
               alt={user?.name || 'Admin'}
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || 'Admin')}&background=e11d48&color=fff`;
+                e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || 'Admin')}&background=E94B4B&color=fff`;
               }}
               className="w-8 h-8 rounded-full object-cover border border-white/20 shrink-0 bg-white/10"
             />
@@ -323,7 +323,7 @@ export default function Header({ onMenuClick, collapsed, title }) {
             <div className="fixed sm:absolute top-14 md:top-16 sm:top-auto left-2 right-2 sm:left-auto sm:right-0 sm:mt-2 w-auto sm:w-56 bg-[#0f1117] rounded-xl shadow-lg border border-white/10 py-2 z-50">
               <div className="px-4 py-3 border-b border-white/10 mb-1 bg-white/5 rounded-t-xl -mt-2">
                 <p className="text-sm font-bold text-white truncate">{user?.name || 'Admin User'}</p>
-                <p className="text-xs text-white/50 truncate mt-0.5 font-medium">{user?.email || 'admin@camellogistics.com'}</p>
+                <p className="text-xs text-white/50 truncate mt-0.5 font-medium">{user?.email || 'admin@quizapp.com'}</p>
               </div>
               
               <div className="px-2 py-1">
@@ -355,9 +355,9 @@ export default function Header({ onMenuClick, collapsed, title }) {
                     await logout()
                     navigate(ROUTES.ADMIN.LOGIN)
                   }}
-                  className="w-full text-left px-3 py-2 text-sm text-[#fb7185] hover:bg-[#e11d48]/10 rounded-lg flex items-center gap-3 transition-colors font-medium cursor-pointer"
+                  className="w-full text-left px-3 py-2 text-sm text-[#E94B4B] hover:bg-[#E94B4B]/10 rounded-lg flex items-center gap-3 transition-colors font-medium cursor-pointer"
                 >
-                  <ICONS.Logout className="w-4 h-4 text-[#fb7185]" />
+                  <ICONS.Logout className="w-4 h-4 text-[#E94B4B]" />
                   Logout
                 </button>
               </div>

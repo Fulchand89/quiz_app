@@ -13,7 +13,7 @@ const ConfigurePrizePool = () => {
   ];
 
   const columns = [
-    { key: 'id', label: 'Pool ID', cellClassName: 'font-mono text-[#fb7185]' },
+    { key: 'id', label: 'Pool ID', cellClassName: 'font-mono text-[#E94B4B]' },
     { key: 'name', label: 'Template Name', cellClassName: 'font-semibold' },
     { key: 'distribution', label: 'Prize Share Distribution Description', cellClassName: 'text-gray-300 max-w-xs truncate' },
     { key: 'minParticipants', label: 'Min Users Required', headerClassName: 'text-center', cellClassName: 'text-center' },
@@ -40,7 +40,10 @@ const ConfigurePrizePool = () => {
           <h1 className="text-xl font-bold">Configure Prize Pools</h1>
           <p className="text-xs text-gray-400 mt-1">Manage winner distribution templates and platforms payout splits.</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-[#fb7185] hover:bg-[#a86634] text-white rounded-lg text-sm font-semibold transition-all cursor-pointer">
+        <button
+          className="flex items-center gap-2 px-4 py-2 text-white rounded-lg text-sm font-semibold transition-all cursor-pointer hover:opacity-90"
+          style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
+        >
           <Plus size={16} /> Create Prize Template
         </button>
       </div>
@@ -54,7 +57,7 @@ const ConfigurePrizePool = () => {
               placeholder="Search templates..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]"
+              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B]"
             />
           </div>
           <div className="flex gap-2">

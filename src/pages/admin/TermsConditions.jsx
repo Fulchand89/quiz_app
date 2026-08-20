@@ -195,17 +195,17 @@ const TermsConditions = () => {
     <div className="font-sans max-w-5xl pb-16 space-y-6">
       {/* ── Main Header Card ── */}
       <div className="bg-[#0f1117] rounded-2xl border border-white/10 p-5 sm:p-6 shadow-xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-[#e11d48]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#E94B4B]/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-5 relative z-10">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-[#e11d48]/15 border border-[#e11d48]/20 flex items-center justify-center shrink-0 shadow-inner">
-              <FileText className="w-6 h-6 text-[#e11d48]" />
+            <div className="w-12 h-12 rounded-2xl bg-[#E94B4B]/15 border border-[#E94B4B]/20 flex items-center justify-center shrink-0 shadow-inner">
+              <FileText className="w-6 h-6 text-[#E94B4B]" />
             </div>
             <div>
               <div className="flex items-center gap-2.5 flex-wrap">
                 <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">Terms &amp; Conditions Management</h1>
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#e11d48]/15 text-[#e11d48] border border-[#e11d48]/25">
+                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#E94B4B]/15 text-[#E94B4B] border border-[#E94B4B]/25">
                   KnowChamp Legal
                 </span>
               </div>
@@ -219,7 +219,8 @@ const TermsConditions = () => {
             {!showEditor ? (
               <button
                 onClick={handleAddNew}
-                className="flex-1 lg:flex-initial flex items-center justify-center gap-2 px-5 py-2.5 bg-[#e11d48] hover:bg-[#9f1239] active:scale-95 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-[#e11d48]/20 cursor-pointer"
+                className="flex-1 lg:flex-initial flex items-center justify-center gap-2 px-5 py-2.5 active:scale-95 text-white rounded-xl text-sm font-bold transition-all shadow-lg cursor-pointer hover:opacity-90"
+                style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
               >
                 <Plus className="w-4 h-4" />
                 <span>Create New Version</span>
@@ -236,7 +237,8 @@ const TermsConditions = () => {
                 <button
                   onClick={handleSave}
                   disabled={publishing}
-                  className="flex-1 lg:flex-initial flex items-center justify-center gap-2 px-5 py-2.5 bg-[#e11d48] hover:bg-[#9f1239] active:scale-95 text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-[#e11d48]/25 disabled:opacity-60 cursor-pointer"
+                  className="flex-1 lg:flex-initial flex items-center justify-center gap-2 px-5 py-2.5 active:scale-95 text-white rounded-xl text-xs font-bold transition-all shadow-lg disabled:opacity-60 cursor-pointer hover:opacity-90"
+                  style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
                 >
                   <Save className="w-4 h-4" />
                   {publishing ? 'Publishing...' : 'Save & Publish'}
@@ -248,52 +250,56 @@ const TermsConditions = () => {
       </div>
 
       {/* ── Audience Segment Tabs ── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="bg-[#0f1117] border border-white/10 p-1.5 rounded-2xl flex items-center gap-1.5 w-fit shadow-md">
-          <button
-            type="button"
-            onClick={() => { setActiveType('customer'); setSelectedHistoryItem(null); }}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer outline-none select-none ${
-              activeType === 'customer'
-                ? 'bg-[#e11d48] text-white shadow-md shadow-[#e11d48]/25'
-                : 'text-white/60 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            <UserCheck className="w-4 h-4" />
-            <span>Player / User App Terms</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => { setActiveType('driver'); setSelectedHistoryItem(null); }}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer outline-none select-none ${
-              activeType === 'driver'
-                ? 'bg-[#e11d48] text-white shadow-md shadow-[#e11d48]/25'
-                : 'text-white/60 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            <Trophy className="w-4 h-4" />
-            <span>Contest Host &amp; Partner Agreement</span>
-          </button>
-        </div>
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="bg-[#0f1117] border border-white/10 p-1.5 rounded-2xl flex items-center gap-1.5 shadow-md w-full sm:w-fit overflow-x-auto no-scrollbar">
+            <button
+              type="button"
+              onClick={() => { setActiveType('customer'); setSelectedHistoryItem(null); }}
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer outline-none select-none whitespace-nowrap flex-1 sm:flex-initial justify-center sm:justify-start ${
+                activeType === 'customer'
+                  ? 'text-white shadow-md'
+                  : 'text-white/60 hover:text-white hover:bg-white/5'
+              }`}
+              style={activeType === 'customer' ? { background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' } : {}}
+            >
+              <UserCheck className="w-4 h-4 shrink-0" />
+              <span>Player / User App Terms</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => { setActiveType('driver'); setSelectedHistoryItem(null); }}
+              className={`flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer outline-none select-none whitespace-nowrap flex-1 sm:flex-initial justify-center sm:justify-start ${
+                activeType === 'driver'
+                  ? 'text-white shadow-md'
+                  : 'text-white/60 hover:text-white hover:bg-white/5'
+              }`}
+              style={activeType === 'driver' ? { background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' } : {}}
+            >
+              <Trophy className="w-4 h-4 shrink-0" />
+              <span>Contest Host &amp; Partner Agreement</span>
+            </button>
+          </div>
 
-        <div className="flex items-center gap-3 text-xs text-white/40">
-          <span className="flex items-center gap-1">
-            <BookOpen className="w-3.5 h-3.5 text-[#e11d48]" />
-            ~{wordCount} words
-          </span>
-          <span className="w-1 h-1 rounded-full bg-white/20" />
-          <span className="flex items-center gap-1">
-            <Clock className="w-3.5 h-3.5 text-blue-400" />
-            ~{estimatedReadTime} min read
-          </span>
+          <div className="flex items-center gap-3 text-xs text-white/40">
+            <span className="flex items-center gap-1">
+              <BookOpen className="w-3.5 h-3.5 text-[#E94B4B]" />
+              ~{wordCount} words
+            </span>
+            <span className="w-1 h-1 rounded-full bg-white/20" />
+            <span className="flex items-center gap-1">
+              <Clock className="w-3.5 h-3.5 text-blue-400" />
+              ~{estimatedReadTime} min read
+            </span>
+          </div>
         </div>
       </div>
 
       {/* ── Metadata / Overview Metrics ── */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-[#0f1117] border border-white/10 p-4 rounded-2xl flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-xl bg-[#e11d48]/15 border border-[#e11d48]/20 flex items-center justify-center shrink-0">
-            <FileText className="w-5 h-5 text-[#e11d48]" />
+          <div className="w-10 h-10 rounded-xl bg-[#E94B4B]/15 border border-[#E94B4B]/20 flex items-center justify-center shrink-0">
+            <FileText className="w-5 h-5 text-[#E94B4B]" />
           </div>
           <div>
             <span className="text-[11px] text-white/40 font-medium block">Agreement Scope</span>
@@ -347,7 +353,7 @@ const TermsConditions = () => {
         <div className="bg-[#0f1117] rounded-2xl border border-white/10 shadow-2xl overflow-hidden animate-in fade-in duration-200">
           <div className="px-5 py-3.5 border-b border-white/10 flex flex-wrap items-center justify-between gap-3 bg-white/2">
             <div className="flex items-center gap-2.5">
-              <Edit3 className="w-4 h-4 text-[#e11d48]" />
+              <Edit3 className="w-4 h-4 text-[#E94B4B]" />
               <span className="text-xs font-bold text-white uppercase tracking-wider">
                 Editing {activeType === 'customer' ? 'Player' : 'Contest Host'} Terms &amp; Conditions
               </span>
@@ -359,8 +365,9 @@ const TermsConditions = () => {
                   type="button"
                   onClick={() => setEditorViewTab('write')}
                   className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    editorViewTab === 'write' ? 'bg-[#e11d48] text-white' : 'text-white/60 hover:text-white'
+                    editorViewTab === 'write' ? 'text-white' : 'text-white/60 hover:text-white'
                   }`}
+                  style={editorViewTab === 'write' ? { background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' } : {}}
                 >
                   Write / Edit
                 </button>
@@ -368,8 +375,9 @@ const TermsConditions = () => {
                   type="button"
                   onClick={() => setEditorViewTab('preview')}
                   className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                    editorViewTab === 'preview' ? 'bg-[#e11d48] text-white' : 'text-white/60 hover:text-white'
+                    editorViewTab === 'preview' ? 'text-white' : 'text-white/60 hover:text-white'
                   }`}
+                  style={editorViewTab === 'preview' ? { background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' } : {}}
                 >
                   App Live Preview
                 </button>
@@ -400,7 +408,7 @@ const TermsConditions = () => {
               <div className="max-w-2xl mx-auto bg-[#0f1117] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-inner">
                 <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/10">
                   <div className="flex items-center gap-2.5">
-                    <Smartphone className="w-4 h-4 text-[#e11d48]" />
+                    <Smartphone className="w-4 h-4 text-[#E94B4B]" />
                     <span className="text-xs font-bold text-white/70">Mobile App Preview</span>
                   </div>
                   <span className="text-[10px] text-green-400 bg-green-500/10 px-2.5 py-0.5 rounded-full border border-green-500/20">
@@ -415,22 +423,23 @@ const TermsConditions = () => {
             </div>
           )}
 
-          <div className="px-5 py-3.5 border-t border-white/10 bg-white/2 flex items-center justify-between">
-            <div className="flex items-center gap-2 text-xs text-white/40">
-              <AlertCircle className="w-3.5 h-3.5 text-amber-400" />
+          <div className="px-5 py-3.5 border-t border-white/10 bg-white/2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="flex items-start sm:items-center gap-2 text-xs text-white/40">
+              <AlertCircle className="w-3.5 h-3.5 text-amber-400 mt-0.5 sm:mt-0 shrink-0" />
               <span>Publishing creates a new revision version and immediately updates the live mobile app.</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-full sm:w-auto">
               <button
                 onClick={() => setShowEditor(false)}
-                className="px-4 py-2 border border-white/10 text-white/70 hover:bg-white/5 rounded-xl text-xs font-semibold cursor-pointer transition-colors"
+                className="flex-1 sm:flex-initial px-4 py-2 border border-white/10 text-white/70 hover:bg-white/5 rounded-xl text-xs font-semibold cursor-pointer transition-colors text-center"
               >
                 Cancel
               </button>
               <button
                 onClick={handleSave}
                 disabled={publishing}
-                className="flex items-center gap-2 px-5 py-2 bg-[#e11d48] hover:bg-[#9f1239] text-white rounded-xl text-xs font-bold shadow-md cursor-pointer transition-all disabled:opacity-60"
+                className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-5 py-2 text-white rounded-xl text-xs font-bold shadow-md cursor-pointer transition-all disabled:opacity-60 hover:opacity-90"
+                style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
               >
                 <Save className="w-3.5 h-3.5" />
                 {publishing ? 'Publishing...' : 'Save & Publish'}
@@ -469,7 +478,8 @@ const TermsConditions = () => {
               </button>
               <button
                 onClick={handleAddNew}
-                className="flex items-center gap-1.5 px-3.5 py-1.5 bg-[#e11d48] hover:bg-[#9f1239] text-white rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 text-white rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer hover:opacity-90"
+                style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
               >
                 <Edit3 className="w-3.5 h-3.5" />
                 Edit Terms
@@ -500,7 +510,7 @@ const TermsConditions = () => {
               </p>
             </div>
           </div>
-          <span className="px-3 py-1 bg-[#e11d48]/15 text-[#e11d48] border border-[#e11d48]/20 rounded-full text-xs font-semibold">
+          <span className="px-3 py-1 bg-[#E94B4B]/15 text-[#E94B4B] border border-[#E94B4B]/20 rounded-full text-xs font-semibold">
             {history.length} Revisions
           </span>
         </div>
@@ -511,7 +521,7 @@ const TermsConditions = () => {
           </div>
         ) : (
           <>
-            <div className="overflow-x-auto no-scrollbar">
+            <div className="hidden md:block overflow-x-auto no-scrollbar">
               <table className="w-full text-left text-xs">
                 <thead className="bg-white/3 border-b border-white/10">
                   <tr>
@@ -539,7 +549,7 @@ const TermsConditions = () => {
                       <tr key={item.id || item.version} className="hover:bg-white/3 transition-colors">
                         <td className="py-3.5 px-4 font-bold text-white">
                           <span className="inline-flex items-center gap-1.5">
-                            <FileText className="w-3.5 h-3.5 text-[#e11d48]" />
+                            <FileText className="w-3.5 h-3.5 text-[#E94B4B]" />
                             {item.version}
                           </span>
                         </td>
@@ -551,7 +561,7 @@ const TermsConditions = () => {
                         </td>
                         <td className="py-3.5 px-4 text-white/70">
                           <span className="inline-flex items-center gap-1.5">
-                            <span className="w-5 h-5 rounded-full bg-[#e11d48]/20 text-[#e11d48] text-[10px] font-bold flex items-center justify-center">
+                            <span className="w-5 h-5 rounded-full bg-[#E94B4B]/20 text-[#E94B4B] text-[10px] font-bold flex items-center justify-center">
                               {(item.author || 'Admin')[0]?.toUpperCase()}
                             </span>
                             {item.author || 'System Admin'}
@@ -580,7 +590,7 @@ const TermsConditions = () => {
                             {(!item.isActive && item.status !== 'Active') && (
                               <button
                                 onClick={() => handleRestore(item)}
-                                className="flex items-center gap-1 px-2.5 py-1 bg-[#e11d48]/10 border border-[#e11d48]/20 text-[#e11d48] hover:bg-[#e11d48]/20 rounded-lg text-xs font-semibold transition-colors cursor-pointer"
+                                className="flex items-center gap-1 px-2.5 py-1 bg-[#E94B4B]/10 border border-[#E94B4B]/20 text-[#E94B4B] hover:bg-[#E94B4B]/20 rounded-lg text-xs font-semibold transition-colors cursor-pointer"
                                 title="Rollback to this version"
                               >
                                 <RotateCcw className="w-3 h-3" />
@@ -594,6 +604,68 @@ const TermsConditions = () => {
                   )}
                 </tbody>
               </table>
+            </div>
+
+            {/* Mobile/Tablet Card Layout */}
+            <div className="block md:hidden divide-y divide-white/5">
+              {paginatedHistory.length === 0 ? (
+                <div className="py-12 text-center text-xs text-white/30 font-medium">
+                  No previous revision history found for this terms document.
+                </div>
+              ) : (
+                paginatedHistory.map((item) => (
+                  <div key={item.id || item.version} className="p-4 space-y-4 hover:bg-white/2 transition-colors">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-white flex items-center gap-1.5">
+                        <FileText className="w-3.5 h-3.5 text-[#E94B4B]" />
+                        {item.version}
+                      </span>
+                      <span
+                        className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${
+                          item.status === 'Active' || item.isActive
+                            ? 'bg-green-500/15 text-green-400 border-green-500/20'
+                            : 'bg-white/8 text-white/40 border-white/10'
+                        }`}
+                      >
+                        {(item.status || (item.isActive ? 'Active' : 'Archived')).toUpperCase()}
+                      </span>
+                    </div>
+
+                    <div className="flex flex-col gap-2 text-white/60">
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-white/30" />
+                        <span className="text-[11px]">Published: {item.date || 'Recently'}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-white/70">
+                        <span className="w-5 h-5 rounded-full bg-[#E94B4B]/20 text-[#E94B4B] text-[10px] font-bold flex items-center justify-center">
+                          {(item.author || 'Admin')[0]?.toUpperCase()}
+                        </span>
+                        <span className="text-[11px]">{item.author || 'System Admin'}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 pt-1">
+                      <button
+                        onClick={() => setSelectedHistoryItem(item)}
+                        className="flex-1 flex items-center justify-center gap-1 px-3 py-2 bg-white/5 border border-white/10 text-white/70 hover:bg-white/10 hover:text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer"
+                      >
+                        <Eye className="w-3.5 h-3.5" />
+                        View
+                      </button>
+                      {(!item.isActive && item.status !== 'Active') && (
+                        <button
+                          onClick={() => handleRestore(item)}
+                          className="flex-1 flex items-center justify-center gap-1 px-2.5 py-2 bg-[#E94B4B]/10 border border-[#E94B4B]/20 text-[#E94B4B] hover:bg-[#E94B4B]/20 rounded-lg text-xs font-semibold transition-colors cursor-pointer"
+                          title="Rollback to this version"
+                        >
+                          <RotateCcw className="w-3.5 h-3.5" />
+                          Rollback
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
 
             {totalItems > itemsPerPage && (
@@ -618,8 +690,8 @@ const TermsConditions = () => {
           <div className="bg-[#0f1117] border border-white/10 rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col overflow-hidden shadow-2xl animate-in zoom-in-95 duration-150">
             <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-white/2">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-[#e11d48]/15 border border-[#e11d48]/20 flex items-center justify-center shrink-0">
-                  <FileText className="w-4 h-4 text-[#e11d48]" />
+                <div className="w-9 h-9 rounded-xl bg-[#E94B4B]/15 border border-[#E94B4B]/20 flex items-center justify-center shrink-0">
+                  <FileText className="w-4 h-4 text-[#E94B4B]" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
@@ -653,7 +725,8 @@ const TermsConditions = () => {
             <div className="px-6 py-3.5 border-t border-white/10 bg-white/2 flex items-center justify-between">
               <button
                 onClick={() => handleRestore(selectedHistoryItem)}
-                className="flex items-center gap-1.5 px-4 py-2 bg-[#e11d48] hover:bg-[#9f1239] text-white rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer"
+                className="flex items-center gap-1.5 px-4 py-2 text-white rounded-xl text-xs font-bold transition-all shadow-sm cursor-pointer hover:opacity-90"
+                style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 Restore &amp; Make Live

@@ -9,7 +9,7 @@ const LIVE_CONTESTS = [
 ];
 
 const COLUMNS = [
-  { key: 'id', label: 'Contest ID', cellClassName: 'font-mono text-[#fb7185]' },
+  { key: 'id', label: 'Contest ID', cellClassName: 'font-mono text-[#E94B4B]' },
   { key: 'title', label: 'Contest Name', cellClassName: 'font-semibold' },
   { key: 'category', label: 'Category', cellClassName: 'text-gray-300' },
   { key: 'entryFee', label: 'Entry Fee', cellClassName: 'text-gray-400 font-medium' },
@@ -19,12 +19,12 @@ const COLUMNS = [
     label: 'Live Participants',
     render: (val) => (
       <div className="flex items-center gap-1.5 font-medium text-white">
-        <Users size={14} className="text-[#fb7185]" />
+        <Users size={14} className="text-[#E94B4B]" />
         <span>{val}</span>
       </div>
     )
   },
-  { key: 'timeRemaining', label: 'Time Remaining', cellClassName: 'text-rose-400 font-medium animate-pulse' },
+  { key: 'timeRemaining', label: 'Time Remaining', cellClassName: 'text-[#E94B4B] font-medium animate-pulse' },
   {
     key: 'status',
     label: 'Live Status',
@@ -58,7 +58,7 @@ const MonitorLiveContests = () => {
               placeholder="Search active contests..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]"
+              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B]"
             />
           </div>
           <div className="flex gap-2">

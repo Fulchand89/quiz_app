@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import ScrollToTop from '../../components/common/ScrollToTop';
@@ -20,8 +20,106 @@ import {
   KNOW_CHAMP_WINNERS,
   KNOW_CHAMP_TESTIMONIALS,
 } from '../../constants/knowChampData';
+import { featureService } from '../../api/services/featureService';
+import { categoryService } from '../../api/services/categoryService';
+import { contestService } from '../../api/services/contestService';
+
+const mergeCategories = (staticCats, dynamicCats) => {
+  const merged = staticCats.map(sc => {
+    const matchingDynamic = dynamicCats.find(dc => dc.name.toLowerCase() === sc.name.toLowerCase());
+    if (matchingDynamic) {
+      return { ...sc, ...matchingDynamic };
+    }
+    return sc;
+  });
+  dynamicCats.forEach(dc => {
+    if (!staticCats.some(sc => sc.name.toLowerCase() === dc.name.toLowerCase())) {
+      merged.push(dc);
+    }
+  });
+  return merged;
+};
+
+const mergeContests = (staticContests, dynamicContests) => {
+  const merged = staticContests.map(sc => {
+    const matchingDynamic = dynamicContests.find(dc => dc.title.toLowerCase() === sc.title.toLowerCase());
+    if (matchingDynamic) {
+      return { ...sc, ...matchingDynamic };
+    }
+    return sc;
+  });
+  dynamicContests.forEach(dc => {
+    if (!staticContests.some(sc => sc.title.toLowerCase() === dc.title.toLowerCase())) {
+      merged.push(dc);
+    }
+  });
+  return merged;
+};
 
 const Home = () => {
+  const navigate = useNavigate();
+  const [features, setFeatures] = React.useState([]);
+  const [featuresLoading, setFeaturesLoading] = React.useState(true);
+  const [categories, setCategories] = React.useState(KNOW_CHAMP_CATEGORIES);
+  const [categoriesLoading, setCategoriesLoading] = React.useState(true);
+  const [contests, setContests] = React.useState(KNOW_CHAMP_CONTESTS);
+  const [contestsLoading, setContestsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    const loadFeatures = async () => {
+      try {
+        const res = await featureService.getPublicFeatures();
+        if (res?.success && Array.isArray(res.data)) {
+          setFeatures(res.data);
+        }
+      } catch (err) {
+        console.error('Error fetching public features:', err);
+      } finally {
+        setFeaturesLoading(false);
+      }
+    };
+
+    const loadCategories = async () => {
+      try {
+        const res = await categoryService.getPublicCategories();
+        if (res?.success && Array.isArray(res.data)) {
+          setCategories(mergeCategories(KNOW_CHAMP_CATEGORIES, res.data));
+        }
+      } catch (err) {
+        console.error('Error fetching public categories:', err);
+      } finally {
+        setCategoriesLoading(false);
+      }
+    };
+
+    const loadContests = async () => {
+      try {
+        const res = await contestService.getPublicContests();
+        if (res?.success && Array.isArray(res.data)) {
+          setContests(mergeContests(KNOW_CHAMP_CONTESTS, res.data));
+        }
+      } catch (err) {
+        console.error('Error fetching public contests:', err);
+      } finally {
+        setContestsLoading(false);
+      }
+    };
+
+    loadFeatures();
+    loadCategories();
+    loadContests();
+  }, []);
+
+  const getCategoryTheme = (catName, catData = {}) => {
+    // Use API-provided fields first (from database), then fallback to static name mapping
+    const staticCat = KNOW_CHAMP_CATEGORIES.find(c => c.name.toLowerCase() === catName.toLowerCase()) || {};
+    return {
+      icon: catData.icon || staticCat.icon || '📚',
+      image: staticCat.image || '/cat-general.png',
+      colorClass: staticCat.colorClass || 'text-red-500 bg-red-500/10 border-red-500/20',
+      borderGlowClass: catData.colorClass || staticCat.borderGlowClass || 'hover:border-red-500/50 hover:shadow-[0_0_20px_rgba(239,68,68,0.25)]',
+    };
+  };
   return (
     <div className="min-h-screen bg-[#090b15] text-white flex flex-col font-sans select-none overflow-x-hidden">
       <ScrollToTop />
@@ -50,18 +148,33 @@ const Home = () => {
 
           {/* Grid list of Contest Cards */}
           <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
-            {KNOW_CHAMP_CONTESTS.map((contest, index) => (
-              <ContestCard
-                key={index}
-                category={contest.category}
-                title={contest.title}
-                prize={contest.prize}
-                entry={contest.entry}
-                joined={contest.joined}
-                image={contest.image}
-                date={contest.date}
-              />
-            ))}
+            {contestsLoading && contests.length === 0
+              ? Array.from({ length: 5 }).map((_, index) => (
+                  <ContestCard key={index} isLoading={true} />
+                ))
+              : contests.map((contest, index) => {
+                  const categoryName = contest.category?.name || contest.category || 'General Knowledge';
+                  const catTheme = getCategoryTheme(categoryName);
+                  const prize = contest.prizePool !== undefined ? parseFloat(contest.prizePool) : (contest.prize || 0);
+                  const entry = contest.entryFee !== undefined ? parseFloat(contest.entryFee) : (contest.entry || 0);
+                  const joined = contest.joined !== undefined ? contest.joined : 0;
+                  const image = contest.image || catTheme.image;
+                  const date = contest.startTime
+                    ? new Date(contest.startTime).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' }) + ', 10:00 Am'
+                    : (contest.date || '');
+                  return (
+                    <ContestCard
+                      key={index}
+                      category={categoryName}
+                      title={contest.title}
+                      prize={prize}
+                      entry={entry}
+                      joined={joined}
+                      image={image}
+                      date={date}
+                    />
+                  );
+                })}
           </div>
         </div>
       </section>
@@ -85,22 +198,30 @@ const Home = () => {
 
           {/* Grid list of Category Cards */}
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-3 sm:gap-6 justify-center">
-            {KNOW_CHAMP_CATEGORIES.map((category, index) => (
-              <CategoryCard
-                key={index}
-                name={category.name}
-                icon={category.icon}
-                image={category.image}
-                colorClass={category.colorClass}
-                borderGlowClass={category.borderGlowClass}
-              />
-            ))}
+            {categoriesLoading && categories.length === 0
+              ? Array.from({ length: 7 }).map((_, index) => (
+                  <CategoryCard key={index} isLoading={true} />
+                ))
+              : categories.map((category, index) => {
+                  const catTheme = getCategoryTheme(category.name, category);
+                  return (
+                    <CategoryCard
+                      key={index}
+                      name={category.name}
+                      icon={catTheme.icon}
+                      image={catTheme.image}
+                      colorClass={catTheme.colorClass}
+                      borderGlowClass={catTheme.borderGlowClass}
+                      onClick={() => navigate(`/contests?category=${encodeURIComponent(category.name.toLowerCase())}`)}
+                    />
+                  );
+                })}
           </div>
         </div>
       </section>
 
       {/* 5. Why Choose Know Champ? */}
-      <WhyChooseUs />
+      <WhyChooseUs isLoading={featuresLoading} features={features} />
 
       {/* 6. Recent Winners */}
       <section className="py-6 sm:py-8 bg-[#090b15]">

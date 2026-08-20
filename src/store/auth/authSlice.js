@@ -4,20 +4,27 @@ import { login, loadUser, updateProfile, deleteProfilePic, logout } from "../aut
 import toast from "react-hot-toast";
 import { MESSAGES } from "../../constants/messages";
 
+const getInitialToken = () => {
+  return Cookies.get("token") || localStorage.getItem("token") || Cookies.get("adminToken") || localStorage.getItem("adminToken") || null;
+};
+
 const getInitialUser = () => {
   try {
-    const storedUser = Cookies.get("user");
+    const token = getInitialToken();
+    if (!token) return null;
+    const storedUser = Cookies.get("user") || localStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : null;
   } catch {
     return null;
   }
 };
 
+const initialToken = getInitialToken();
 const initialUser = getInitialUser();
 
 const initialState = {
   user: initialUser,
-  isAuthenticated: !!Cookies.get("token") || !!initialUser,
+  isAuthenticated: !!(initialToken && initialUser),
   loading: false,
   error: null,
 };
@@ -47,9 +54,11 @@ const authSlice = createSlice({
 
         if (user) {
           Cookies.set("user", JSON.stringify(user), { expires: 7 });
+          localStorage.setItem("user", JSON.stringify(user));
         }
         if (token) {
           Cookies.set("token", token, { expires: 7 });
+          localStorage.setItem("token", token);
         }
       })
       .addCase(login.rejected, (state, action) => {
@@ -69,9 +78,11 @@ const authSlice = createSlice({
           state.user = user;
           state.isAuthenticated = true;
           Cookies.set("user", JSON.stringify(user), { expires: 7 });
+          localStorage.setItem("user", JSON.stringify(user));
         }
         if (token) {
           Cookies.set("token", token, { expires: 7 });
+          localStorage.setItem("token", token);
         }
       })
       .addCase(loadUser.rejected, (state) => {
@@ -80,6 +91,8 @@ const authSlice = createSlice({
         state.user = null;
         Cookies.remove("user");
         Cookies.remove("token");
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
       })
 
       // UPDATE PROFILE
@@ -92,6 +105,7 @@ const authSlice = createSlice({
         if (updatedUser) {
           state.user = updatedUser;
           Cookies.set("user", JSON.stringify(updatedUser), { expires: 7 });
+          localStorage.setItem("user", JSON.stringify(updatedUser));
         }
       })
       .addCase(updateProfile.rejected, (state, action) => {
@@ -108,6 +122,7 @@ const authSlice = createSlice({
         if (state.user) {
           state.user = { ...state.user, profilePicUrl: null };
           Cookies.set("user", JSON.stringify(state.user), { expires: 7 });
+          localStorage.setItem("user", JSON.stringify(state.user));
         }
       })
       .addCase(deleteProfilePic.rejected, (state, action) => {
@@ -125,6 +140,8 @@ const authSlice = createSlice({
         state.loading = false;
         Cookies.remove("user");
         Cookies.remove("token");
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
         toast.success(MESSAGES.AUTH.LOGOUT_SUCCESS);
       })
       .addCase(logout.rejected, (state) => {
@@ -133,6 +150,8 @@ const authSlice = createSlice({
         state.loading = false;
         Cookies.remove("user");
         Cookies.remove("token");
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
         toast.success(MESSAGES.AUTH.LOGOUT_SUCCESS);
       });
   },

@@ -47,9 +47,10 @@ const Pagination = ({
               key={`page-${page}`}
               onClick={() => onPageChange(page)}
               className={`w-8 h-8 flex items-center justify-center rounded-lg font-medium transition-colors cursor-pointer ${currentPage === page
-                  ? 'bg-[#fb7185] text-white shadow-sm shadow-[#fb7185]/20'
+                  ? 'text-white shadow-sm'
                   : 'border border-gray-600 text-gray-400 hover:bg-gray-800'
                 }`}
+              style={currentPage === page ? { background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' } : {}}
             >
               {page}
             </button>

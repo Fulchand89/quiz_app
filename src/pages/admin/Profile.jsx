@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   User, 
   Mail, 
@@ -154,13 +154,13 @@ const Profile = () => {
     }
   };
 
-  const defaultAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(formData.name || user?.name || 'Admin')}&background=fb7185&color=fff&font-size=0.4`;
+  const defaultAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(formData.name || user?.name || 'Admin')}&background=E94B4B&color=fff&font-size=0.4`;
 
   return (
     <div className="font-sans mx-auto space-y-6 pb-12">
       
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-[#fb7185] to-[#8C5223] rounded-2xl p-6 sm:p-8 text-white shadow-md relative overflow-hidden">
+      <div className="rounded-2xl p-6 sm:p-8 text-white shadow-md relative overflow-hidden" style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}>
         <div className="absolute right-0 top-0 bottom-0 opacity-10 pointer-events-none flex items-center pr-10">
           <ShieldCheck className="w-64 h-64 text-white" />
         </div>
@@ -179,7 +179,7 @@ const Profile = () => {
             />
             
             {/* Upload Camera Badge */}
-            <label className="absolute bottom-0 right-0 bg-white text-[#fb7185] p-2.5 rounded-full shadow-md cursor-pointer hover:bg-amber-50 hover:scale-105 transition-all" title="Upload new photo">
+            <label className="absolute bottom-0 right-0 bg-white text-[#E94B4B] p-2.5 rounded-full shadow-md cursor-pointer hover:bg-amber-50 hover:scale-105 transition-all" title="Upload new photo">
               <Camera className="w-4 h-4" />
               <input 
                 type="file" 
@@ -195,7 +195,8 @@ const Profile = () => {
                 type="button"
                 onClick={handleRemovePic}
                 disabled={isDeletingPic}
-                className="absolute top-0 right-0 bg-red-500 text-white p-1.5 rounded-full shadow-md hover:bg-red-600 transition-all cursor-pointer disabled:opacity-50"
+                className="absolute top-0 right-0 text-white p-1.5 rounded-full shadow-md transition-all cursor-pointer disabled:opacity-50 hover:opacity-80"
+                style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
                 title="Remove photo"
               >
                 {isDeletingPic ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Trash2 className="w-3.5 h-3.5" />}
@@ -229,11 +230,11 @@ const Profile = () => {
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100/60 p-6 sm:p-8">
         <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
           <div className="flex items-center gap-2">
-            <User className="w-5 h-5 text-[#fb7185]" />
+            <User className="w-5 h-5 text-[#E94B4B]" />
             <h2 className="text-lg font-bold text-gray-900">Personal Information</h2>
           </div>
           {profilePicFile && (
-            <span className="text-xs font-bold text-[#fb7185] bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+            <span className="text-xs font-bold text-[#E94B4B] bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
               New profile photo selected
             </span>
           )}
@@ -255,7 +256,7 @@ const Profile = () => {
                   onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                   placeholder="Enter full name"
                   required
-                  className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#fb7185] focus:ring-1 focus:ring-[#fb7185] font-medium text-gray-800"
+                  className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#E94B4B] focus:ring-1 focus:ring-[#E94B4B] font-medium text-gray-800"
                 />
               </div>
             </div>
@@ -273,7 +274,7 @@ const Profile = () => {
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                   placeholder="Enter email address"
                   required
-                  className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#fb7185] focus:ring-1 focus:ring-[#fb7185] font-medium text-gray-800"
+                  className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#E94B4B] focus:ring-1 focus:ring-[#E94B4B] font-medium text-gray-800"
                 />
               </div>
             </div>
@@ -290,7 +291,7 @@ const Profile = () => {
                   value={formData.mobile}
                   onChange={(e) => setFormData(prev => ({ ...prev, mobile: e.target.value }))}
                   placeholder="Enter mobile number"
-                  className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#fb7185] focus:ring-1 focus:ring-[#fb7185] font-medium text-gray-800"
+                  className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#E94B4B] focus:ring-1 focus:ring-[#E94B4B] font-medium text-gray-800"
                 />
               </div>
             </div>
@@ -318,7 +319,8 @@ const Profile = () => {
             <button
               type="submit"
               disabled={isUpdatingProfile}
-              className="flex items-center gap-2 px-6 py-2.5 bg-[#fb7185] hover:bg-[#a56534] text-white font-bold rounded-xl text-sm transition-all shadow-sm cursor-pointer disabled:opacity-60"
+              className="flex items-center gap-2 px-6 py-2.5 text-white font-bold rounded-xl text-sm transition-all shadow-sm cursor-pointer disabled:opacity-60 hover:opacity-90"
+              style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
             >
               {isUpdatingProfile ? (
                 <>
@@ -339,7 +341,7 @@ const Profile = () => {
       {/* Standalone Change Password Card */}
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100/60 p-6 sm:p-8">
         <div className="flex items-center gap-2 mb-6 pb-4 border-b border-gray-100">
-          <KeyRound className="w-5 h-5 text-[#fb7185]" />
+          <KeyRound className="w-5 h-5 text-[#E94B4B]" />
           <div>
             <h2 className="text-lg font-bold text-gray-900">Security & Password</h2>
             <p className="text-xs text-gray-500 font-medium">Update your account password safely</p>
@@ -362,7 +364,7 @@ const Profile = () => {
                   onChange={(e) => setPasswordData(prev => ({ ...prev, currentPassword: e.target.value }))}
                   placeholder="Enter current password"
                   required
-                  className="w-full pl-10 pr-10 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#fb7185] focus:ring-1 focus:ring-[#fb7185] font-medium text-gray-800"
+                  className="w-full pl-10 pr-10 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#E94B4B] focus:ring-1 focus:ring-[#E94B4B] font-medium text-gray-800"
                 />
                 <button
                   type="button"
@@ -388,7 +390,7 @@ const Profile = () => {
                   placeholder="Min 6 characters"
                   required
                   minLength={6}
-                  className="w-full pl-10 pr-10 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#fb7185] focus:ring-1 focus:ring-[#fb7185] font-medium text-gray-800"
+                  className="w-full pl-10 pr-10 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#E94B4B] focus:ring-1 focus:ring-[#E94B4B] font-medium text-gray-800"
                 />
                 <button
                   type="button"
@@ -414,7 +416,7 @@ const Profile = () => {
                   placeholder="Re-enter new password"
                   required
                   minLength={6}
-                  className="w-full pl-10 pr-10 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#fb7185] focus:ring-1 focus:ring-[#fb7185] font-medium text-gray-800"
+                  className="w-full pl-10 pr-10 py-2.5 text-sm border border-gray-200 rounded-xl focus:outline-none focus:border-[#E94B4B] focus:ring-1 focus:ring-[#E94B4B] font-medium text-gray-800"
                 />
                 <button
                   type="button"
@@ -442,7 +444,7 @@ const Profile = () => {
                 </>
               ) : (
                 <>
-                  <KeyRound className="w-4 h-4 text-[#fb7185]" />
+                  <KeyRound className="w-4 h-4 text-[#E94B4B]" />
                   Update Password
                 </>
               )}

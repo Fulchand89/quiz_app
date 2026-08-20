@@ -11,7 +11,7 @@ const TOPICS = [
 ];
 
 const COLUMNS = [
-  { key: 'id', label: 'Topic ID', cellClassName: 'font-mono text-[#fb7185]' },
+  { key: 'id', label: 'Topic ID', cellClassName: 'font-mono text-[#E94B4B]' },
   { key: 'name', label: 'Topic Name', cellClassName: 'font-semibold' },
   { key: 'subject', label: 'Subject', cellClassName: 'text-gray-300' },
   { key: 'category', label: 'Category', cellClassName: 'text-gray-400 text-sm' },
@@ -39,9 +39,9 @@ const ManageTopics = () => {
           <h1 className="text-xl font-bold">Manage Topics</h1>
           <p className="text-xs text-gray-400 mt-1">Configure individual quiz topics mapping to subjects.</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-[#fb7185] hover:bg-[#a86634] text-white rounded-lg text-sm font-semibold transition-all cursor-pointer">
-          <Plus size={16} /> Add Topic
-        </button>
+       <button className="flex items-center gap-2 px-4 py-2 bg-[linear-gradient(178.27deg,#E94B4B_1.6%,#911616_126.9%)] hover:opacity-90 text-white rounded-lg text-sm font-semibold transition-all cursor-pointer">
+  <Plus size={16} /> Add Topic
+</button>
       </div>
 
       <div className="bg-[#0f1117] text-white rounded-2xl shadow-sm border border-white/10 overflow-hidden flex flex-col">
@@ -53,7 +53,7 @@ const ManageTopics = () => {
               placeholder="Search topics..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]"
+              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B]"
             />
           </div>
           <div className="flex gap-2">

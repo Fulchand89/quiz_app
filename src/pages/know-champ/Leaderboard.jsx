@@ -15,12 +15,7 @@ const Leaderboard = () => {
     sortedLeaders[2], // Rank 3
   ];
 
-  const leagueStats = [
-    { title: 'Weekly Bonus Pool', value: '₹2,50,000' },
-    { title: 'Next Season Launch', value: '2 Days Left' },
-    { title: 'Minimum Entry Level', value: 'Level 5' },
-    { title: 'Verified Champions', value: '1,420 Players' },
-  ];
+
 
   return (
     <div className="min-h-screen bg-[#090b15] text-white flex flex-col font-sans select-none overflow-x-hidden">
@@ -30,10 +25,10 @@ const Leaderboard = () => {
       {/* Hero Header */}
       <div className="relative pt-32 pb-16 bg-gradient-to-b from-[#0a0715] via-[#100810] to-[#090b15] border-b border-gray-900 flex flex-col items-center text-center">
         <h1 className="text-3xl sm:text-5xl font-black mb-4 text-white">
-          Leaderboard & <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">Excellence League</span>
+          Leaderboard
         </h1>
         <p className="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
-          Track top earners, compare your scores with other global players, and qualify for the prestigious Excellence League.
+          Track top earners and compare your scores with other global players.
         </p>
       </div>
 
@@ -107,62 +102,7 @@ const Leaderboard = () => {
 
         </div>
 
-        {/* Excellence League Banner */}
-        <div id="excellence" className="rounded-3xl bg-gradient-to-r from-[#190a14] via-[#090b1e] to-[#0e1121] border border-red-500/20 p-8 sm:p-12 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-red-600/10 rounded-full blur-[100px] pointer-events-none"></div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-            <div className="lg:col-span-8 space-y-4">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-red-500/10 border border-red-500/20 text-red-400 uppercase tracking-widest">
-                <Zap className="w-3.5 h-3.5 fill-red-500" />
-                Special Event
-              </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-white">
-                The Excellence League
-              </h2>
-              <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
-                Qualify by winning at least 3 featured quizzes in a single week. Excellence League players receive an additional weekly bonus pool, unique champion profile badges, and fast-track instant payouts.
-              </p>
-              
-              <motion.div
-                className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={{
-                  hidden: {},
-                  visible: { transition: { staggerChildren: 0.12 } },
-                }}
-              >
-                {leagueStats.map((item, idx) => (
-                  <motion.div
-                    key={idx}
-                    variants={{
-                      hidden: { opacity: 0, y: 24, scale: 0.95 },
-                      visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: 'easeOut' } },
-                    }}
-                    whileHover={{ scale: 1.05, y: -4, transition: { duration: 0.2 } }}
-                    className="p-3 bg-[#0d0f1c]/80 border border-gray-800 rounded-xl cursor-default"
-                  >
-                    <div className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">{item.title}</div>
-                    <div className="text-base font-black text-white mt-1">{item.value}</div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-            
-            <div className="lg:col-span-4 flex justify-center">
-              <div className="relative group">
-                <div className="absolute -inset-1.5 bg-red-500 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
-                <div className="relative bg-[#0b0e1b] border border-red-500/20 px-8 py-6 rounded-2xl text-center space-y-3">
-                  <Trophy className="w-12 h-12 text-amber-400 mx-auto drop-shadow-md animate-bounce" />
-                  <div className="text-sm font-bold text-white">League Reward Pool</div>
-                  <div className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">₹5,00,000</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
 
         {/* Global Standings Table */}
         <div className="space-y-6">

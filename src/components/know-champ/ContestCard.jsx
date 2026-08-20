@@ -1,7 +1,57 @@
 import React from 'react';
 import { Calendar, Users } from 'lucide-react';
 
-const ContestCard = ({ category, title, prize, entry, joined, image, date }) => {
+const ContestCard = ({ category, title, prize, entry, joined, image, date, isLoading }) => {
+  if (isLoading) {
+    return (
+      <div className="rounded-2xl bg-[#0d0f1f] border border-gray-800/60 flex flex-col h-full overflow-hidden animate-pulse">
+        {/* Top row skeleton — Category name + image */}
+        <div className="px-4 sm:px-5 flex items-center justify-between gap-3 h-[80px] sm:h-[90px] min-h-[80px] sm:min-h-[90px] max-h-[80px] sm:max-h-[90px] bg-gray-800/20">
+          <div className="h-4 sm:h-5 bg-gray-800/60 rounded-md w-2/3"></div>
+          <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gray-800/60 rounded-full shrink-0"></div>
+        </div>
+
+        {/* Bottom Content Section skeleton */}
+        <div className="px-4 sm:px-5 pt-3 sm:pt-4 pb-4 sm:pb-5 flex flex-col gap-2.5 sm:gap-3 flex-1">
+          {/* Contest title skeleton */}
+          <div className="flex flex-col gap-2 h-[44px] sm:h-[48px]">
+            <div className="h-3.5 sm:h-4 bg-gray-800/60 rounded-md w-full"></div>
+            <div className="h-3.5 sm:h-4 bg-gray-800/60 rounded-md w-4/5"></div>
+          </div>
+
+          {/* Prize Pool + Entry Fee skeleton */}
+          <div className="flex items-start justify-between gap-2 mt-1">
+            <div>
+              <div className="h-2.5 bg-gray-800/40 rounded w-12 mb-1"></div>
+              <div className="h-4 sm:h-5 bg-gray-800/60 rounded-md w-16"></div>
+            </div>
+            <div className="flex flex-col items-end">
+              <div className="h-2.5 bg-gray-800/40 rounded w-12 mb-1"></div>
+              <div className="h-4 sm:h-5 bg-gray-800/60 rounded-md w-10"></div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <hr className="border-gray-800/80" />
+
+          {/* Date + Players skeleton */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-1.5 w-1/2">
+              <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 bg-gray-800/60 rounded-full shrink-0"></div>
+              <div className="h-2.5 bg-gray-800/60 rounded w-full"></div>
+            </div>
+            <div className="flex items-center gap-1.5 w-1/4 justify-end">
+              <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 bg-gray-800/60 rounded-full shrink-0"></div>
+              <div className="h-2.5 bg-gray-800/60 rounded w-12"></div>
+            </div>
+          </div>
+
+          {/* Download App button skeleton */}
+          <div className="w-full h-[38px] sm:h-[44px] bg-gray-800/60 rounded-xl mt-auto"></div>
+        </div>
+      </div>
+    );
+  }
   const headerBgColor = (() => {
     const cat = (category || '').toLowerCase();
     const img = (image || '').toLowerCase();

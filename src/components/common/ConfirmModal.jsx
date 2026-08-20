@@ -17,15 +17,18 @@ const ConfirmModal = ({
   const typeStyles = {
     danger: {
       iconBg: 'bg-red-100 text-red-600',
-      buttonBg: 'bg-red-600 hover:bg-red-700 text-white shadow-xs',
+      buttonBg: 'text-white shadow-xs',
+      buttonStyle: { background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' },
     },
     warning: {
       iconBg: 'bg-amber-100 text-amber-600',
-      buttonBg: 'bg-[#fb7185] hover:bg-[#a86834] text-white shadow-xs',
+      buttonBg: 'text-white shadow-xs',
+      buttonStyle: { background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' },
     },
     info: {
       iconBg: 'bg-blue-100 text-blue-600',
       buttonBg: 'bg-blue-600 hover:bg-blue-700 text-white shadow-xs',
+      buttonStyle: {},
     }
   };
 
@@ -72,6 +75,7 @@ const ConfirmModal = ({
             type="button"
             onClick={onConfirm}
             disabled={isLoading}
+            style={style.buttonStyle}
             className={`px-4 py-2 text-xs font-bold rounded-lg transition-all flex items-center gap-1.5 cursor-pointer disabled:opacity-50 ${style.buttonBg}`}
           >
             {isLoading && <Loader2 className="w-3.5 h-3.5 animate-spin" />}

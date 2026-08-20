@@ -25,6 +25,7 @@ const SupportContact = lazy(() => import('../pages/admin/SupportContact'))
 const Profile = lazy(() => import('../pages/admin/Profile'))
 const Settings = lazy(() => import('../pages/admin/Settings'))
 const NotificationsPage = lazy(() => import('../pages/admin/NotificationsPage'))
+const ManageFeatures = lazy(() => import('../pages/admin/ManageFeatures'))
 
 const AdminRoutes = {
   path: ROUTES.ADMIN.ROOT,
@@ -121,6 +122,10 @@ const AdminRoutes = {
     {
       path: ROUTES.ADMIN.NOTIFICATIONS.replace(ROUTES.ADMIN.ROOT + '/', ''),
       element: <NotificationsPage />,
+    },
+    {
+      path: ROUTES.ADMIN.MANAGE_FEATURES.replace(ROUTES.ADMIN.ROOT + '/', ''),
+      element: <ManageFeatures />,
     },
     {
       path: '*',

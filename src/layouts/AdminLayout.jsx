@@ -44,7 +44,7 @@ const AdminLayout = () => {
         <main className="flex-1 overflow-y-auto p-3 sm:p-6 admin-portal-main no-scrollbar">
           <Suspense fallback={
             <div className="flex items-center justify-center h-full min-h-[300px]">
-              <div className="w-8 h-8 border-4 border-[#fb7185] border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-8 h-8 border-4 border-[#E94B4B] border-t-transparent rounded-full animate-spin"></div>
             </div>
           }>
             <Outlet />

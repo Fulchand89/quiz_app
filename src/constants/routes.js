@@ -38,5 +38,6 @@ export const ROUTES = {
     PROFILE: '/admin/profile',
     SETTINGS: '/admin/settings',
     NOTIFICATIONS: '/admin/notifications',
+    MANAGE_FEATURES: '/admin/features',
   },
 }

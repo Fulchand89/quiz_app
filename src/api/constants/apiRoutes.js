@@ -83,4 +83,25 @@ export const API_ROUTES = {
     GET: "admin/settings",
     UPDATE: "admin/settings",
   },
+  CATEGORIES: {
+    GET_PUBLIC: "public/categories",
+    GET_ALL: "admin/categories",
+    CREATE: "admin/categories",
+    UPDATE: (id) => `admin/categories/${id}`,
+    DELETE: (id) => `admin/categories/${id}`,
+  },
+  CONTESTS: {
+    GET_PUBLIC: "public/contests",
+    GET_ALL: "admin/contests",
+    CREATE: "admin/contests",
+    UPDATE: (id) => `admin/contests/${id}`,
+    DELETE: (id) => `admin/contests/${id}`,
+  },
+  FEATURES: {
+    GET_PUBLIC: "public/features",
+    GET_ALL: "admin/features",
+    CREATE: "admin/features",
+    UPDATE: (id) => `admin/features/${id}`,
+    DELETE: (id) => `admin/features/${id}`,
+  },
 };

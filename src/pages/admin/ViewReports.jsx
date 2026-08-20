@@ -12,7 +12,7 @@ const ViewReports = () => {
   ];
 
   const columns = [
-    { key: 'id', label: 'Report ID', cellClassName: 'font-mono text-[#fb7185]' },
+    { key: 'id', label: 'Report ID', cellClassName: 'font-mono text-[#E94B4B]' },
     { key: 'name', label: 'Report Name', cellClassName: 'font-semibold' },
     { key: 'range', label: 'Data Range / Schedule', cellClassName: 'text-gray-300' },
     { key: 'type', label: 'Report Type', cellClassName: 'text-gray-400 text-sm' },
@@ -50,7 +50,7 @@ const ViewReports = () => {
               placeholder="Search reports..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]"
+              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B]"
             />
           </div>
           <div className="flex gap-2">

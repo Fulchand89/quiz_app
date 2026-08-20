@@ -10,7 +10,7 @@ const Login = lazy(() => import('../pages/admin/Login'))
 const withSuspense = (Component) => (
   <Suspense fallback={
     <div className="flex items-center justify-center min-h-screen bg-[#090b15]">
-      <div className="w-8 h-8 border-4 border-[#fb7185] border-t-transparent rounded-full animate-spin"></div>
+      <div className="w-8 h-8 border-4 border-[#E94B4B] border-t-transparent rounded-full animate-spin"></div>
     </div>
   }>
     <Component />

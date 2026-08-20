@@ -37,13 +37,13 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-3 items-center justify-center lg:justify-start">
               <Link
                 to="/contests"
-                className="w-full max-w-[240px] sm:w-[196px] h-[50px] flex items-center justify-center rounded-lg bg-gradient-to-r from-red-600 to-red-500 text-white font-bold text-sm transition duration-300 hover:from-red-500 hover:to-red-600"
+                className="w-full max-w-[240px] sm:w-[196px] h-[50px] flex items-center justify-center rounded-lg btn-brand-primary text-white font-bold text-sm"
               >
                 Explore Contests
               </Link>
               <Link
                 to="/how-it-works"
-                className="w-full max-w-[240px] sm:w-[196px] h-[50px] flex items-center justify-center rounded-lg border-2 border-red-600 text-white font-semibold text-sm transition duration-300 hover:bg-red-600"
+                className="w-full max-w-[240px] sm:w-[196px] h-[50px] flex items-center justify-center rounded-lg btn-brand-outline text-white font-semibold text-sm"
               >
                 How It Works
               </Link>

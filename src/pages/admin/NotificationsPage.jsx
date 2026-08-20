@@ -147,7 +147,7 @@ const NotificationsPage = () => {
       case 'booking':
         return <Package className="w-4 h-4 text-blue-600" />;
       case 'enquiry':
-        return <FileText className="w-4 h-4 text-[#fb7185]" />;
+        return <FileText className="w-4 h-4 text-[#E94B4B]" />;
       case 'payment_status':
       case 'wallet_credit':
         return <Wallet className="w-4 h-4 text-green-600" />;
@@ -167,7 +167,7 @@ const NotificationsPage = () => {
           <div className="flex items-center gap-2.5">
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Notifications Center</h1>
             {unreadCount > 0 && (
-              <span className="bg-[#fb7185] text-white text-xs font-bold px-2.5 py-0.5 rounded-full shadow-xs">
+              <span className="text-white text-xs font-bold px-2.5 py-0.5 rounded-full shadow-xs" style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}>
                 {unreadCount} Unread
               </span>
             )}
@@ -181,14 +181,14 @@ const NotificationsPage = () => {
             disabled={loading}
             className="flex items-center justify-center gap-1.5 px-3 py-2 border border-gray-200 bg-white rounded-lg text-xs font-bold text-gray-700 hover:bg-gray-50 transition-all shadow-xs cursor-pointer disabled:opacity-50"
           >
-            <RotateCw className={`w-3.5 h-3.5 text-[#fb7185] ${loading ? 'animate-spin' : ''}`} />
+            <RotateCw className={`w-3.5 h-3.5 text-[#E94B4B] ${loading ? 'animate-spin' : ''}`} />
             <span>Refresh</span>
           </button>
 
           {unreadCount > 0 && (
             <button
               onClick={handleMarkAllRead}
-              className="flex items-center justify-center gap-1.5 px-3.5 py-2 border border-[#fecdd3] bg-[#fff1f2] text-[#fb7185] hover:bg-[#F9EFE7] rounded-lg text-xs font-bold transition-all shadow-xs cursor-pointer"
+              className="flex items-center justify-center gap-1.5 px-3.5 py-2 border border-[#E94B4B]/20 bg-[#E94B4B]/10 text-[#E94B4B] hover:bg-[#F9EFE7] rounded-lg text-xs font-bold transition-all shadow-xs cursor-pointer"
             >
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>Mark All Read</span>
@@ -198,7 +198,8 @@ const NotificationsPage = () => {
           {notifications.length > 0 && (
             <button
               onClick={() => setClearModalOpen(true)}
-              className="flex items-center justify-center gap-1.5 px-3.5 py-2 border border-red-200 bg-red-50 text-red-600 hover:bg-red-100 rounded-lg text-xs font-bold transition-all shadow-xs cursor-pointer"
+              className="flex items-center justify-center gap-1.5 px-3.5 py-2 text-white rounded-lg text-xs font-bold transition-all shadow-xs cursor-pointer hover:opacity-90"
+              style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>Clear All</span>
@@ -214,9 +215,10 @@ const NotificationsPage = () => {
             onClick={() => setFilterType('all')}
             className={`px-4 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
               filterType === 'all'
-                ? 'bg-[#fb7185] text-white shadow-xs'
+                ? 'text-white shadow-xs'
                 : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
             }`}
+            style={filterType === 'all' ? { background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' } : {}}
           >
             All ({totalItems})
           </button>
@@ -224,9 +226,10 @@ const NotificationsPage = () => {
             onClick={() => setFilterType('unread')}
             className={`px-4 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
               filterType === 'unread'
-                ? 'bg-[#fb7185] text-white shadow-xs'
+                ? 'text-white shadow-xs'
                 : 'bg-white border border-gray-200 text-gray-600 hover:bg-gray-50'
             }`}
+            style={filterType === 'unread' ? { background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' } : {}}
           >
             Unread ({unreadCount})
           </button>
@@ -255,7 +258,7 @@ const NotificationsPage = () => {
               <div
                 key={notif.id}
                 className={`p-4 sm:p-5 flex items-start justify-between gap-4 transition-colors hover:bg-gray-50/80 ${
-                  !notif.isRead ? 'bg-[#fff1f2]/50 border-l-4 border-l-[#fb7185]' : ''
+                  !notif.isRead ? 'bg-[#E94B4B]/5 border-l-4 border-l-[#E94B4B]' : ''
                 }`}
               >
                 <div className="flex items-start gap-3.5 min-w-0">
@@ -268,7 +271,7 @@ const NotificationsPage = () => {
                         {notif.title}
                       </h4>
                       {!notif.isRead && (
-                        <span className="w-2 h-2 rounded-full bg-[#fb7185] inline-block" />
+                        <span className="w-2 h-2 rounded-full bg-[#E94B4B] inline-block" />
                       )}
                     </div>
                     <p className="text-xs text-gray-600 mt-1 leading-relaxed whitespace-pre-wrap">

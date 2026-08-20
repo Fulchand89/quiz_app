@@ -91,19 +91,19 @@ const Login = () => {
               </div>
             )}
             <img 
-              src={logoUrl || '/logo.png'} 
-              alt="Camel Logistics" 
+              src={logoUrl || '/logo_knowchamp.png'} 
+              alt="KnowChamp" 
               onLoad={() => setLogoLoading(false)}
               onError={(e) => {
                 setLogoLoading(false);
                 e.target.onerror = null;
-                e.target.src = '/logo.png';
+                e.target.src = '/logo_knowchamp.png';
               }}
               className={`h-16 w-auto object-contain mx-auto transition-all duration-300 ${logoLoading ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`} 
             />
           </div>
           <h2 className="mt-4 text-2xl font-bold text-white tracking-tight">Admin Portal</h2>
-          <p className="mt-2 text-[14px] text-gray-400 font-medium">Log in to manage Camel Logistics</p>
+          <p className="mt-2 text-[14px] text-gray-400 font-medium">Log in to manage KnowChamp</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-5" noValidate>
@@ -118,9 +118,9 @@ const Login = () => {
                 value={email}
                 onChange={handleEmailChange}
                 className={`block w-full pl-10 pr-4 py-2.5 bg-[#1a1d29] border ${
-                  errors.email ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-white/10 focus:ring-[#e11d48] focus:border-[#e11d48]'
+                  errors.email ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-white/10 focus:ring-[#E94B4B] focus:border-[#E94B4B]'
                 } rounded-lg text-[14px] text-white placeholder-gray-500 focus:outline-none focus:ring-1 transition-colors`}
-                placeholder="admin@camellogistics.com"
+                placeholder="admin@quizapp.com"
                 disabled={loading}
               />
             </div>
@@ -140,7 +140,7 @@ const Login = () => {
                 value={password}
                 onChange={handlePasswordChange}
                 className={`block w-full pl-10 pr-10 py-2.5 bg-[#1a1d29] border ${
-                  errors.password ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-white/10 focus:ring-[#e11d48] focus:border-[#e11d48]'
+                  errors.password ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : 'border-white/10 focus:ring-[#E94B4B] focus:border-[#E94B4B]'
                 } rounded-lg text-[14px] text-white placeholder-gray-500 focus:outline-none focus:ring-1 transition-colors`}
                 placeholder="••••••••"
                 disabled={loading}
@@ -161,7 +161,8 @@ const Login = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex justify-center items-center gap-2 py-2.5 px-4 rounded-lg text-[14px] font-bold text-white bg-[#e11d48] hover:bg-[#9f1239] active:bg-[#7f0d30] focus:outline-none transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full flex justify-center items-center gap-2 py-2.5 px-4 rounded-lg text-[14px] font-bold text-white focus:outline-none transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90"
+            style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
           >
             {loading ? (
               <>

@@ -13,7 +13,7 @@ const ManageUsers = () => {
   ];
 
   const columns = [
-    { key: 'id', label: 'User ID', cellClassName: 'font-mono text-[#fb7185]' },
+    { key: 'id', label: 'User ID', cellClassName: 'font-mono text-[#E94B4B]' },
     { key: 'name', label: 'Name', cellClassName: 'font-semibold' },
     { key: 'email', label: 'Email' },
     { key: 'joined', label: 'Date Joined' },
@@ -40,9 +40,12 @@ const ManageUsers = () => {
           <h1 className="text-xl font-bold">Manage Users</h1>
           <p className="text-xs text-gray-400 mt-1">View, search, filter and manage registered platform users.</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 bg-[#fb7185] hover:bg-[#a86634] text-white rounded-lg text-sm font-semibold transition-all cursor-pointer">
-          <UserPlus size={16} /> Add New User
-        </button>
+       <button
+  className="flex items-center gap-2 px-4 py-2 text-white rounded-lg text-sm font-semibold transition-all cursor-pointer hover:opacity-90"
+  style={{ background: 'linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)' }}
+>
+  <UserPlus size={16} /> Add New User
+</button>
       </div>
 
       <div className="bg-[#0f1117] text-white rounded-2xl shadow-sm border border-white/10 overflow-hidden flex flex-col">
@@ -54,7 +57,7 @@ const ManageUsers = () => {
               placeholder="Search users by name or email..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#fb7185]"
+              className="pl-9 pr-4 py-2 w-full border border-gray-600 rounded-lg text-sm bg-[#0f1117] text-white focus:outline-none focus:border-[#E94B4B]"
             />
           </div>
           <div className="flex gap-2">

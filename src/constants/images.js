@@ -1,11 +1,5 @@
-import logo from "../assets/company_logo/logo.png";
-
-
-
-
-
 const images = {
-    logo,
+    logo: "/logo_knowchamp.png",
 };
 
 export default images;

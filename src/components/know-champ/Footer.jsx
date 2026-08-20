@@ -171,20 +171,19 @@ const Footer = () => {
             {/* Form */}
             <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 sm:gap-[10px]">
               <div className="relative w-full sm:w-[257px] h-[51px]">
-                <input
-                  type="email"
-                  required
-                  placeholder="Your Email"
-                  className="w-full h-full px-3 bg-[#0e1121] border-[0.5px] border-gray-800 rounded-[6px] text-[19.86px] text-white placeholder-gray-600 focus:outline-none focus:border-red-500 transition duration-300"
-                />
+               <input
+                type="email"
+                required
+                placeholder="Your Email"
+                className="w-full max-w-[257px] h-[41px] px-3 bg-[#0e1121] border-[0.5px] border-gray-800 rounded-[6px] text-[19.86px] text-white placeholder-gray-600 focus:outline-none focus:border-red-500 transition duration-300"
+               />
               </div>
-
-              <button
-                type="submit"
-                className="w-full sm:w-[111px] h-[51px] flex items-center justify-center gap-[10.59px] bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-600 text-white font-bold rounded-[6.35px] text-sm transition duration-300"
-              >
-                Subscribe
-              </button>
+             <button
+             type="submit"
+             className="w-full max-w-[111px] h-[41px] flex items-center justify-center gap-[10.59px] bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-600 text-white font-bold rounded-[6px] text-sm transition duration-300"
+             >
+             Subscribe
+             </button>
             </form>
           </div>
         </div>

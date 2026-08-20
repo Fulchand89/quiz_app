@@ -24,7 +24,7 @@ nav::-webkit-scrollbar {
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -171,7 +171,7 @@ body {
 
 .ql-editor blockquote,
 .ql-editor-content blockquote {
-  border-left: 4px solid #e11d48 !important;
+  border-left: 4px solid #E94B4B !important;
   padding-left: 1rem !important;
   font-style: italic !important;
   color: #4b5563 !important;
@@ -281,7 +281,7 @@ body {
 /* Button/Interactive overlays matching Dashboard button style */
 .admin-portal-main button.bg-white,
 .admin-portal-main button.border-gray-200,
-.admin-portal-main button.border-\[\#fecdd3\]:not(.bg-\[\#fb7185\]) {
+.admin-portal-main button.border-\[\#E94B4B\]\/20:not(.bg-\[\#E94B4B\]) {
   background-color: #0f1117 !important;
   border-color: #4b5563 !important; /* border-gray-600 */
   color: #ffffff !important;
@@ -289,37 +289,36 @@ body {
 
 .admin-portal-main button.bg-white:hover,
 .admin-portal-main button.border-gray-200:hover,
-.admin-portal-main button.border-\[\#fecdd3\]:not(.bg-\[\#fb7185\]):hover {
+.admin-portal-main button.border-\[\#E94B4B\]\/20:not(.bg-\[\#E94B4B\]):hover {
   background-color: #1f2937 !important; /* hover:bg-gray-800 */
 }
 
 /* Make icons inside secondary buttons have the new red theme color */
 .admin-portal-main button.bg-white svg,
 .admin-portal-main button.border-gray-200 svg,
-.admin-portal-main button.border-\[\#fecdd3\]:not(.bg-\[\#fb7185\]) svg {
-  color: #e11d48 !important;
+.admin-portal-main button.border-\[\#E94B4B\]\/20:not(.bg-\[\#E94B4B\]) svg {
+  color: #E94B4B !important;
 }
 
 /* Global button overlays for primary buttons with rose backgrounds */
-.admin-portal-main button.bg-\[\#fb7185\],
-.admin-portal-main .bg-\[\#fb7185\],
+.admin-portal-main button.bg-\[\#E94B4B\],
+.admin-portal-main .bg-\[\#E94B4B\],
 .admin-portal-main button.bg-rose-500,
 .admin-portal-main .bg-rose-500 {
-  background-color: #e11d48 !important;
+  background-color: #E94B4B !important;
 }
 
-.admin-portal-main button.bg-\[\#fb7185\]:hover,
-.admin-portal-main .bg-\[\#fb7185\]:hover,
+.admin-portal-main button.bg-\[\#E94B4B\]:hover,
+.admin-portal-main .bg-\[\#E94B4B\]:hover,
 .admin-portal-main button.bg-rose-500:hover,
 .admin-portal-main .bg-rose-500:hover {
-  background-color: #9f1239 !important; /* hover:bg-rose-900 / primaryDark */
+  background-color: #911616 !important; /* hover:bg-rose-900 / primaryDark */
 }
 
 /* Global text color overrides for IDs and badges using rose color */
-.admin-portal-main .text-\[\#fb7185\],
-.admin-portal-main .text-rose-400,
+.admin-portal-main .text-\[\#E94B4B\],
 .admin-portal-main .text-rose-500 {
-  color: #e11d48 !important;
+  color: #E94B4B !important;
 }
 
 /* Hover states for rows and items */
@@ -361,4 +360,28 @@ body {
 /* Let's also adjust the table skeleton components so they load in dark style */
 .admin-portal-main .animate-pulse {
   background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* ── Brand Button Styles ── */
+.btn-brand-primary {
+  background: linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%) !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+}
+
+.btn-brand-primary:hover {
+  opacity: 0.95 !important;
+  box-shadow: 0 0 15px rgba(233, 75, 75, 0.5) !important;
+}
+
+.btn-brand-outline {
+  border: 2px solid #E94B4B !important;
+  color: #ffffff !important;
+  background: transparent !important;
+  transition: all 0.3s ease;
+}
+
+.btn-brand-outline:hover {
+  background: linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%) !important;
+  border-color: transparent !important;
 }

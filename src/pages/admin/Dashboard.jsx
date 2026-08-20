@@ -99,40 +99,52 @@ export default function Dashboard() {
           title="Refresh dashboard data"
           className="flex items-center gap-1.5 px-3.5 py-2 bg-[#0f1117] border border-gray-600 hover:bg-gray-800 text-white rounded-lg text-xs font-bold transition-all shadow-xs cursor-pointer disabled:opacity-50"
         >
-          <RotateCw className={`w-3.5 h-3.5 text-[#fb7185] ${isFetching ? 'animate-spin' : ''}`} />
+          <RotateCw className={`w-3.5 h-3.5 text-[#E94B4B] ${isFetching ? 'animate-spin' : ''}`} />
           <span>Refresh</span>
         </button>
       </div>
 
       {/* Top stat cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-6">
-        {topStats.map(s => (
-          <Link key={s.label} to={s.path}>
-            <div className="bg-[#0f1117] text-white rounded-xl p-4 xl:p-5 border border-white/10 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex items-center">
-              <div className="flex items-start gap-3 xl:gap-4 min-w-0 w-full">
-                <div
-                  className="w-10 h-10 xl:w-12 xl:h-12 rounded-xl flex items-center justify-center shrink-0 text-white shadow-sm"
-                  style={{ backgroundColor: THEME.colors.primary }}
-                >
-                  {s.icon}
-                </div>
-                <div className="flex flex-col min-w-0 flex-1">
-                  <span className="text-xs text-gray-400 font-medium mb-1 truncate">{s.label}</span>
-                  <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                    {isLoading && !analyticsData ? (
-                      <div className="h-5 w-14 bg-white/10 rounded-md animate-pulse my-0.5" />
-                    ) : (
-                      <p className="text-lg xl:text-xl font-bold text-white truncate">{s.value}</p>
-                    )}
-                  </div>
-                  <span className="text-[10px] text-gray-400 mt-1 font-medium truncate">Live database metric</span>
-                </div>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+  {topStats.map((s) => (
+    <Link key={s.label} to={s.path}>
+      <div className="bg-[#0f1117] text-white rounded-xl p-4 xl:p-5 border border-white/10 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full flex items-center">
+        <div className="flex items-start gap-3 xl:gap-4 min-w-0 w-full">
+          
+          <div
+            className="w-10 h-10 xl:w-12 xl:h-12 rounded-xl flex items-center justify-center shrink-0 text-white shadow-sm hover:opacity-90 transition-all duration-300"
+            style={{
+              background:
+                "linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)",
+            }}
+          >
+            {s.icon}
+          </div>
 
+          <div className="flex flex-col min-w-0 flex-1">
+            <span className="text-xs text-gray-400 font-medium mb-1 truncate">
+              {s.label}
+            </span>
+
+            <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+              {isLoading && !analyticsData ? (
+                <div className="h-5 w-14 bg-white/10 rounded-md animate-pulse my-0.5" />
+              ) : (
+                <p className="text-lg xl:text-xl font-bold text-white truncate">
+                  {s.value}
+                </p>
+              )}
+            </div>
+
+            <span className="text-[10px] text-gray-400 mt-1 font-medium truncate">
+              Live database metric
+            </span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  ))}
+</div>
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-3 sm:gap-6">
         {/* Recent Contests — always visible, no full loading block */}
         <div className="xl:col-span-2 flex flex-col">
@@ -140,8 +152,8 @@ export default function Dashboard() {
             <div>
               <div className="flex items-center justify-between px-5 py-4 border-b border-gray-600">
                 <h3 className="font-semibold text-white">Recent Contests</h3>
-                <Link to={ROUTES.ADMIN.MONITOR_LIVE} className="text-xs text-[#fb7185] font-bold hover:underline flex items-center gap-1">
-                  Monitor Live Contests <ChevronRight className="w-3.5 h-3.5 text-[#fb7185]" />
+                <Link to={ROUTES.ADMIN.MONITOR_LIVE} className="text-xs text-[#E94B4B] font-bold hover:underline flex items-center gap-1">
+                  Monitor Live Contests <ChevronRight className="w-3.5 h-3.5 text-[#E94B4B]" />
                 </Link>
               </div>
               <div className="overflow-x-auto no-scrollbar">
@@ -267,7 +279,7 @@ export default function Dashboard() {
           <p className="text-xs text-gray-400 font-medium">Average Success Rate</p>
           <div className="mt-2 pt-2 border-t border-gray-600 flex items-center justify-between">
             <span className="text-xs font-bold text-white">Total Quiz Attempts:</span>
-            <span className="text-xs font-bold text-[#fb7185]">
+            <span className="text-xs font-bold text-[#E94B4B]">
               124,800
             </span>
           </div>
