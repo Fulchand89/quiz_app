@@ -46,16 +46,16 @@ const HowItWorks = () => {
 
       {/* Hero Header */}
       <div className="relative pt-36 pb-20 bg-gradient-to-b from-[#0b0c16] via-[#100713] to-[#090b15] border-b border-gray-900 flex flex-col items-center text-center">
-        <h1 className="text-3xl sm:text-5xl font-black mb-4 text-white">
+        <h1 className="text-3xl sm:text-5xl font-black mb-4 text-[#FFFFFF]">
           How It <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">Works</span>
         </h1>
-        <p className="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
+        <p className="text-[#FFFFFF] max-w-xl mx-auto text-sm sm:text-base">
           Getting started is quick and easy. Follow these simple steps to learn, play, and win cash prizes daily.
         </p>
       </div>
 
       <div className="w-[calc(100%-32px)] max-w-[1425px] mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-1 space-y-20">
-        
+
         {/* Step-by-Step Flow */}
         <div className="relative">
           {/* Connecting Line (for desktop) */}
@@ -63,8 +63,8 @@ const HowItWorks = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 relative z-10">
             {steps.map((item, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className="group relative bg-[#0e1121] border border-gray-800/80 rounded-2xl p-6 hover:border-red-500/30 transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Step number badge */}
@@ -83,7 +83,7 @@ const HowItWorks = () => {
                 </h3>
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
+                <p className="text-xs sm:text-sm text-gray-[#FFFFFF] leading-relaxed">
                   {item.description}
                 </p>
               </div>
@@ -97,10 +97,10 @@ const HowItWorks = () => {
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
               Rules & Fair Play Guidelines
             </h2>
-            <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
+            <p className="text-sm sm:text-base text-[#FFFFFF] leading-relaxed">
               We employ state-of-the-art anti-cheat detection, quick results calculation, and multi-signature security protocols to ensure that all contests are completely clean, secure, and 100% fair.
             </p>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-gray-300 pt-2 font-semibold">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-[#FFFFFF] pt-2 font-semibold">
               <li className="flex items-center gap-2">
                 <span className="text-red-500 font-bold">✔</span> No emulator support
               </li>
@@ -116,7 +116,7 @@ const HowItWorks = () => {
             </ul>
           </div>
           <div>
-            <Link 
+            <Link
               to="/contests"
               className="inline-flex items-center gap-2 px-8 py-4 btn-brand-primary text-white font-bold rounded-xl shadow-lg transition-all duration-300"
             >

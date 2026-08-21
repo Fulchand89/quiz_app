@@ -24,19 +24,19 @@ const Leaderboard = () => {
 
       {/* Hero Header */}
       <div className="relative pt-32 pb-16 bg-gradient-to-b from-[#0a0715] via-[#100810] to-[#090b15] border-b border-gray-900 flex flex-col items-center text-center">
-        <h1 className="text-3xl sm:text-5xl font-black mb-4 text-white">
+        <h1 className="text-3xl sm:text-5xl font-black mb-4 text-[#FFFFFF]">
           Leaderboard
         </h1>
-        <p className="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
+        <p className="text-[#FFFFFF] max-w-xl mx-auto text-sm sm:text-base">
           Track top earners and compare your scores with other global players.
         </p>
       </div>
 
       <div className="w-[calc(100%-32px)] max-w-[1425px] mx-auto px-4 sm:px-6 lg:px-8 py-16 flex-1 space-y-16">
-        
+
         {/* Top 3 Podium section */}
         <div className="flex flex-col sm:flex-row items-end justify-center gap-6 pt-10 pb-4 max-w-4xl mx-auto w-full">
-          
+
           {/* Rank 2 */}
           {podium[0] && (
             <div className="flex flex-col items-center flex-1 order-2 sm:order-1 bg-[#0e1121] border border-gray-800 rounded-2xl p-6 relative w-full sm:w-auto h-[260px] justify-between">
@@ -48,7 +48,7 @@ const Leaderboard = () => {
               </div>
               <div className="text-center">
                 <h4 className="font-bold text-white">{podium[0].name}</h4>
-                <p className="text-xs text-gray-500">{podium[0].contest}</p>
+                <p className="text-xs text-[#FFFFFF]">{podium[0].contest}</p>
               </div>
               <div className="text-slate-400 font-extrabold text-lg">
                 ₹{podium[0].amount.toLocaleString()}
@@ -73,7 +73,7 @@ const Leaderboard = () => {
               </div>
               <div className="text-center">
                 <h4 className="font-black text-white text-lg">{podium[1].name}</h4>
-                <p className="text-xs text-gray-400">{podium[1].contest}</p>
+                <p className="text-xs text-[#FFFFFF]">{podium[1].contest}</p>
               </div>
               <div className="text-amber-400 font-black text-2xl">
                 ₹{podium[1].amount.toLocaleString()}
@@ -92,7 +92,7 @@ const Leaderboard = () => {
               </div>
               <div className="text-center">
                 <h4 className="font-bold text-white">{podium[2].name}</h4>
-                <p className="text-xs text-gray-500">{podium[2].contest}</p>
+                <p className="text-xs text-[#FFFFFF]">{podium[2].contest}</p>
               </div>
               <div className="text-amber-600 font-extrabold text-base">
                 ₹{podium[2].amount.toLocaleString()}
@@ -122,12 +122,11 @@ const Leaderboard = () => {
                   {sortedLeaders.map((player, idx) => (
                     <tr key={idx} className="hover:bg-gray-800/20 transition duration-200">
                       <td className="px-6 py-4">
-                        <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${
-                          player.rank === 1 ? 'bg-amber-400 text-gray-950 font-black' :
-                          player.rank === 2 ? 'bg-slate-400 text-gray-950 font-black' :
-                          player.rank === 3 ? 'bg-amber-600 text-gray-950 font-black' :
-                          'text-gray-400'
-                        }`}>
+                        <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${player.rank === 1 ? 'bg-amber-400 text-gray-950 font-black' :
+                          player.rank === 2 ? 'bg-slate-400 text-[#FFFFFF] font-black' :
+                            player.rank === 3 ? 'bg-amber-600 text-[#FFFFFF] font-black' :
+                              'text-'
+                          }`}>
                           {player.rank}
                         </span>
                       </td>
@@ -137,7 +136,7 @@ const Leaderboard = () => {
                         </div>
                         {player.name}
                       </td>
-                      <td className="px-6 py-4 text-gray-400">{player.contest}</td>
+                      <td className="px-6 py-4 text-[#FFFFFF]">{player.contest}</td>
                       <td className="px-6 py-4 text-right font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">
                         ₹{player.amount.toLocaleString()}
                       </td>

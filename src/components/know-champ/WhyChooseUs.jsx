@@ -166,7 +166,7 @@ const WhyChooseUs = ({ isLoading, features: customFeatures }) => {
                 </div>
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#FFFFFF] leading-relaxed">
                   {feature.description}
                 </p>
 

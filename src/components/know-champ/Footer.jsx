@@ -25,7 +25,7 @@ const Footer = () => {
                 className="w-full h-full object-contain drop-shadow-[0_2px_8px_rgba(239,68,68,0.15)] group-hover:scale-105 transition-all duration-300"
               />
             </Link>
-            <p className="font-['Outfit'] text-[19.86px] font-normal leading-none tracking-[0] text-gray-500 max-w-sm">
+            <p className="font-['Outfit'] text-[20px]  font-normal leading-none tracking-[0] text-[#FFFFFF] max-w-sm">
               India's leading quiz contest platform where knowledge meets opportunity. Join and challenge yourself to win exciting cash rewards.
             </p>
             {/* Social Icons */}
@@ -75,7 +75,7 @@ const Footer = () => {
             <h4 className="w-[157px] h-[32px] font-['Montserrat'] text-[26px] font-semibold leading-none tracking-[0] text-[#E94B4B] whitespace-nowrap">
               Quick Links
             </h4>
-            <ul className="space-y-3 font-['Montserrat'] text-[22px] font-medium leading-none tracking-[0]">
+            <ul className="space-y-3 font-['Montserrat'] text-[20px] text-[#FFFFFF] font-medium leading-none tracking-[0]">
               <li>
                 <Link
                   to="/"
@@ -127,7 +127,7 @@ const Footer = () => {
             <h4 className="w-[157px] h-[32px] font-['Montserrat'] text-[26px] font-semibold leading-none tracking-[0] text-[#E94B4B] whitespace-nowrap">
               Support
             </h4>
-            <ul className="space-y-3 font-['Montserrat'] text-[22px] font-medium leading-none tracking-[0]">
+            <ul className="space-y-3 font-['Montserrat'] text-[20px] text-[#FFFFFF] font-medium leading-none tracking-[0]">
               <li>
                 <a href="#" className="inline-block hover:text-red-400 transition-colors duration-200">
                   Help Center
@@ -164,26 +164,26 @@ const Footer = () => {
             </h4>
 
             {/* Description */}
-            <p className="font-['Outfit'] text-[19.86px] font-normal leading-none tracking-[0] text-gray-500 max-w-sm">
+            <p className="font-['Outfit'] text-[20px] font-normal leading-none tracking-[0] text-[#FFFFFF] max-w-sm">
               Get latest updates about new contests and exciting offers directly in your inbox.
             </p>
 
             {/* Form */}
             <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 sm:gap-[10px]">
               <div className="relative w-full sm:w-[257px] h-[51px]">
-               <input
-                type="email"
-                required
-                placeholder="Your Email"
-                className="w-full max-w-[257px] h-[41px] px-3 bg-[#0e1121] border-[0.5px] border-gray-800 rounded-[6px] text-[19.86px] text-white placeholder-gray-600 focus:outline-none focus:border-red-500 transition duration-300"
-               />
+                <input
+                  type="email"
+                  required
+                  placeholder="Your Email"
+                  className="w-full max-w-[257px] h-[41px] px-3 bg-[#0e1121] border-[0.5px] border-gray-800 rounded-[6px] text-[19.86px] text-white placeholder-gray-600 focus:outline-none focus:border-red-500 transition duration-300"
+                />
               </div>
-             <button
-             type="submit"
-             className="w-full max-w-[111px] h-[41px] flex items-center justify-center gap-[10.59px] bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-600 text-white font-bold rounded-[6px] text-sm transition duration-300"
-             >
-             Subscribe
-             </button>
+              <button
+                type="submit"
+                className="w-full max-w-[111px] h-[41px] flex items-center justify-center gap-[10.59px] bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-600 text-white font-bold rounded-[6px] text-sm transition duration-300"
+              >
+                Subscribe
+              </button>
             </form>
           </div>
         </div>

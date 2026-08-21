@@ -111,8 +111,8 @@ const Contest = () => {
   const filteredContests = contests.filter((contest) => {
     const catName = contest.category?.name || contest.category || 'General Knowledge';
     const matchesCategory = selectedCategory === 'All' || catName.toLowerCase() === selectedCategory.toLowerCase();
-    const matchesSearch = contest.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          catName.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = contest.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      catName.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -120,14 +120,14 @@ const Contest = () => {
     <div className="min-h-screen bg-[#090b15] text-white flex flex-col font-sans select-none overflow-x-hidden">
       <ScrollToTop />
       <Navbar />
-      
+
       {/* Title Header */}
       <div className="relative pt-24 sm:pt-32 pb-10 sm:pb-16 bg-gradient-to-b from-[#120813] to-[#090b15] border-b border-gray-900 flex flex-col items-center text-center px-4">
         <div className="absolute inset-0 bg-red-950/10 blur-xl pointer-events-none rounded-full"></div>
         <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black mb-3 sm:mb-4 relative z-10 text-white">
           Active <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">Contests</span>
         </h1>
-        <p className="text-gray-400 max-w-xl mx-auto text-xs sm:text-sm md:text-base relative z-10">
+        <p className="text-[#FFFFFF] max-w-xl mx-auto text-xs sm:text-sm md:text-base relative z-10">
           Browse through all active quizzes, choose your favorite category, and download our app to play and win!
         </p>
       </div>
@@ -160,11 +160,10 @@ const Contest = () => {
               <>
                 <button
                   onClick={() => setSelectedCategory('All')}
-                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold transition-all duration-300 border whitespace-nowrap flex-shrink-0 ${
-                    selectedCategory === 'All'
+                  className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold transition-all duration-300 border whitespace-nowrap flex-shrink-0 ${selectedCategory === 'All'
                       ? 'bg-red-500 border-red-500 text-white'
                       : 'bg-[#14182e] border-gray-800 text-gray-400 hover:border-gray-700 hover:text-white'
-                  }`}
+                    }`}
                 >
                   All Contests
                 </button>
@@ -174,11 +173,10 @@ const Contest = () => {
                     <button
                       key={idx}
                       onClick={() => setSelectedCategory(cat.name)}
-                      className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold transition-all duration-300 border flex items-center gap-1 sm:gap-1.5 whitespace-nowrap flex-shrink-0 ${
-                        selectedCategory === cat.name
+                      className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-bold transition-all duration-300 border flex items-center gap-1 sm:gap-1.5 whitespace-nowrap flex-shrink-0 ${selectedCategory === cat.name
                           ? 'bg-red-500 border-red-500 text-white'
                           : 'bg-[#14182e] border-gray-800 text-gray-400 hover:border-gray-700 hover:text-white'
-                      }`}
+                        }`}
                     >
                       <span>{catTheme.icon}</span>
                       {cat.name}

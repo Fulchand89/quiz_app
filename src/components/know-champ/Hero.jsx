@@ -20,7 +20,7 @@ const Hero = () => {
 
             {/* Headline */}
             <div className="space-y-3">
-              <p className="font-['Montserrat'] font-semibold text-[26px] sm:text-[32px] lg:text-[40px] leading-tight text-gray-300">
+              <p className="font-['Montserrat'] font-semibold text-[26px] sm:text-[32px] lg:text-[40px] leading-tight text-[#FFFFFF]">
                 Play Quiz.<br />Challenge Yourself.
               </p>
               <h1 className="font-['Montserrat'] font-bold text-[38px] sm:text-[50px] lg:text-[62px] leading-tight text-red-500">
@@ -29,7 +29,7 @@ const Hero = () => {
             </div>
 
             {/* Description */}
-            <p className="text-gray-400 text-base max-w-md mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-[#FFFFFF] text-base max-w-md mx-auto lg:mx-0 leading-relaxed">
               Join India's most trusted quiz contest platform. Compete, learn and win exciting rewards.
             </p>
 
@@ -55,7 +55,7 @@ const Hero = () => {
                 <div key={i} className="flex flex-col items-center gap-1">
                   <span className="text-red-500">{stat.icon}</span>
                   <span className="text-sm font-bold text-white">{stat.count}</span>
-                  <span className="text-[11px] text-gray-400 font-medium uppercase tracking-wide">{stat.label}</span>
+                  <span className="text-[11px] text-[#FFFFFF] font-medium uppercase tracking-wide">{stat.label}</span>
                 </div>
               ))}
             </div>

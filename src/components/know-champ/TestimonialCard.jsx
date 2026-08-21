@@ -21,7 +21,7 @@ const TestimonialCard = ({ rating, text, name, title, image }) => {
       </div>
 
       {/* Testimonial Text */}
-      <p className="text-xs sm:text-sm md:text-base text-white leading-relaxed flex-1 mb-4 sm:mb-6">
+      <p className="text-xs sm:text-sm md:text-base [#FFFFFF] leading-relaxed flex-1 mb-4 sm:mb-6">
         {text}"
       </p>
 
@@ -44,7 +44,7 @@ const TestimonialCard = ({ rating, text, name, title, image }) => {
           <h5 className="text-sm sm:text-base font-bold text-white leading-none">
             {name}
           </h5>
-          <span className="text-[10px] sm:text-xs text-gray-500 mt-1 block">
+          <span className="text-[10px] sm:text-xs text-[#FFFFFF] mt-1 block">
             {title}
           </span>
         </div>

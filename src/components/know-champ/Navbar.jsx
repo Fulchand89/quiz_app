@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, UserPlus } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,11 +61,10 @@ const Navbar = () => {
                   <Link
                     key={idx}
                     to={link.path}
-                    className={`relative py-2 text-base font-semibold tracking-wide transition-all duration-300 hover:text-red-500 ${
-                      active
-                        ? "text-red-500 font-bold"
-                        : "text-gray-300"
-                    }`}
+                    className={`relative py-2 text-base font-semibold tracking-wide transition-all duration-300 hover:text-red-500 ${active
+                      ? "text-red-500 font-bold"
+                      : "text-[#FFFFFF]"
+                      }`}
                   >
                     {link.name}
 
@@ -78,12 +77,13 @@ const Navbar = () => {
             </div>
 
             <div className="hidden md:block">
-              <button
-                type="button"
-                className="w-[144px] h-[43px] px-[33px] pt-[11px] pb-[10px] flex items-center justify-center gap-[10px] rounded-[6px] btn-brand-primary text-white font-bold text-sm"
+              <Link
+                to="/register"
+                className="h-[46px] px-6 flex items-center justify-center gap-2 rounded-xl btn-brand-primary text-white font-bold text-sm tracking-wide"
               >
-                Register
-              </button>
+                <UserPlus size={16} />
+                Register Now
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -108,20 +108,18 @@ const Navbar = () => {
 
       {/* Background Overlay - website visible with blur */}
       <div
-        className={`fixed inset-0 z-30 md:hidden bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${
-          isOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 z-30 md:hidden bg-black/40 backdrop-blur-sm transition-opacity duration-300 ${isOpen
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
+          }`}
         aria-hidden="true"
         onClick={closeMenu}
       />
 
       {/* Mobile Side Panel */}
       <aside
-        className={`fixed top-0 left-0 bottom-0 z-40 md:hidden w-72 max-w-[85vw] bg-[#0a0d1e] border-r border-gray-800/60 shadow-2xl flex flex-col overflow-y-auto transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 bottom-0 z-40 md:hidden w-72 max-w-[85vw] bg-[#0a0d1e] border-r border-gray-800/60 shadow-2xl flex flex-col overflow-y-auto transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
         aria-label="Mobile navigation"
       >
         {/* Panel Header */}
@@ -152,11 +150,10 @@ const Navbar = () => {
                 key={idx}
                 to={link.path}
                 onClick={closeMenu}
-                className={`block px-4 py-3 rounded-lg text-base font-semibold transition duration-150 ${
-                  active
-                    ? "bg-red-500/10 text-red-500 border-l-4 border-red-500"
-                    : "text-gray-300 hover:bg-gray-800 hover:text-white"
-                }`}
+                className={`block px-4 py-3 rounded-lg text-base font-semibold transition duration-150 ${active
+                  ? "bg-red-500/10 text-red-500 border-l-4 border-red-500"
+                  : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                  }`}
               >
                 {link.name}
               </Link>
@@ -165,13 +162,18 @@ const Navbar = () => {
         </div>
 
         <div className="px-5 py-5 border-t border-gray-800/60">
-          <button
-            type="button"
+          <Link
+            to="/register"
             onClick={closeMenu}
-            className="w-full h-[43px] flex items-center justify-center rounded-[6px] btn-brand-primary text-white font-bold text-sm"
+            className="w-full h-[46px] flex items-center justify-center gap-2 rounded-xl text-white font-bold text-sm tracking-wide"
+            style={{
+              background:
+                "linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%)",
+            }}
           >
-            Register
-          </button>
+            <UserPlus size={16} />
+            Register Now
+          </Link>
         </div>
       </aside>
     </>

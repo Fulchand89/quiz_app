@@ -6,6 +6,7 @@ const ContestPage = lazy(() => import('../pages/know-champ/Contest'))
 const HowItWorksPage = lazy(() => import('../pages/know-champ/HowItWorks'))
 const LeaderboardPage = lazy(() => import('../pages/know-champ/Leaderboard'))
 const Login = lazy(() => import('../pages/admin/Login'))
+const RegisterPage = lazy(() => import('../pages/know-champ/Register'))
 
 const withSuspense = (Component) => (
   <Suspense fallback={
@@ -33,6 +34,10 @@ const PublicRoutes = [
   {
     path: '/leaderboard',
     element: withSuspense(LeaderboardPage),
+  },
+  {
+    path: '/register',
+    element: withSuspense(RegisterPage),
   },
   {
     path: ROUTES.ADMIN.LOGIN,

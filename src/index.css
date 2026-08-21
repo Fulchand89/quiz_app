@@ -366,12 +366,19 @@ body {
 .btn-brand-primary {
   background: linear-gradient(178.27deg, #E94B4B 1.6%, #911616 126.9%) !important;
   color: #ffffff !important;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px !important;
+  cursor: pointer !important;
 }
 
 .btn-brand-primary:hover {
   opacity: 0.95 !important;
-  box-shadow: 0 0 15px rgba(233, 75, 75, 0.5) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.35) !important;
+}
+
+.btn-brand-primary:active {
+  transform: translateY(1px);
 }
 
 .btn-brand-outline {

@@ -95,7 +95,7 @@ const FAQ = () => {
               text-sm
               sm:text-base
               leading-7
-              text-gray-400
+              text-[#FFFFFF]
             "
           >
             Got questions? We have answers. Find everything you need to know
